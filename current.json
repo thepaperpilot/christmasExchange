@@ -1,0 +1,196 @@
+{
+  "Opt-out": [
+    "Michelle and B.J.",
+    "Ransom",
+    "Francis",
+    "Eric"
+  ],
+  "Groups": [
+    [
+      [
+        {
+          "Name": "Mary and Chuck",
+          "Group": 0
+        },
+        {
+          "Name": "David",
+          "Group": 0
+        },
+        {
+          "Name": "Nathan and Leah",
+          "Group": 0
+        },
+        {
+          "Name": "Martha and Justin",
+          "Group": 0
+        },
+        {
+          "Name": "Tim and Ashley",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Mark",
+          "Group": 0
+        },
+        {
+          "Name": "Thomas",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Charlotte and Gary",
+          "Group": 0
+        },
+        {
+          "Name": "Michelle and B.J.",
+          "Group": 0
+        },
+        {
+          "Name": "Eric",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Rita",
+          "Group": 1
+        }
+      ],
+      [
+        {
+          "Name": "Teresa and Joe",
+          "Group": 1
+        }
+      ],
+      [
+        {
+          "Name": "Janet and Maryann",
+          "Group": 2
+        },
+        {
+          "Name": "Melissa",
+          "Group": 0
+        },
+        {
+          "Name": "Jennifer and Derek",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Wilma",
+          "Group": 1
+        }
+      ],
+      [
+        {
+          "Name": "John and Sara",
+          "Group": 2
+        }
+      ],
+      [
+        {
+          "Name": "Greg and Kate",
+          "Group": 0
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "Name": "Ally",
+          "Group": 0
+        },
+        {
+          "Name": "Jakob",
+          "Group": 0
+        },
+        {
+          "Name": "Marissa",
+          "Group": 0
+        },
+        {
+          "Name": "Lily",
+          "Group": 0
+        },
+        {
+          "Name": "Trevor",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Ransom",
+          "Group": 0
+        },
+        {
+          "Name": "Francis",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Emerson",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Amy",
+          "Group": 0
+        },
+        {
+          "Name": "Grant",
+          "Group": 0
+        }
+      ],
+      [
+        {
+          "Name": "Anthony",
+          "Group": 0
+        },
+        {
+          "Name": "Drew",
+          "Group": 0
+        }
+      ]
+    ]
+  ],
+  "Rules": [
+    {
+      "Source": [
+        "Greg and Kate"
+      ],
+      "Whitelist": [
+        "John and Sara"
+      ]
+    },
+    {
+      "Source": [
+        "Janet and Maryann"
+      ],
+      "Whitelist": [
+        "Rita"
+      ]
+    },
+    {
+      "Source": [
+        2
+      ],
+      "Whitelist": [
+        1
+      ]
+    },
+    {
+      "Source": [
+        1
+      ],
+      "Blacklist": [
+        1
+      ]
+    }
+  ]
+}
