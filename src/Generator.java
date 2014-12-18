@@ -51,7 +51,7 @@ public static ArrayList<ArrayList<Person>> generate() {
         }
     }
     if (nulls > 0) {
-        error(nulls + " people weren't able to be sorted.");
+        error(nulls + (nulls == 1 ? " person wasn't" : " people weren't") + " able to be sorted.");
     }
     createCSV(groups);
     return groups;
