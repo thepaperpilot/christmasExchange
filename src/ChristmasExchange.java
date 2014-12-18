@@ -42,12 +42,9 @@ private ChristmasExchange() {
                 to += "\n";
                 from += "\n";
             }
-            names = names.trim();
-            to = to.trim();
-            from = from.trim();
-            textArea1.setText(names);
-            textArea2.setText(to);
-            textArea3.setText(from);
+            textArea1.setText(names.trim());
+            textArea2.setText(to.trim());
+            textArea3.setText(from.trim());
         }
     });
 }
