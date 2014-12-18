@@ -58,7 +58,7 @@ public static ArrayList<ArrayList<Person>> generate() {
 }
 
 private static void error(String error) {
-    ChristmasExchange.instance.error.setText(ChristmasExchange.instance.error.getText() + "\n" + error);
+    ChristmasExchange.instance.error.append("\n" + error);
 }
 
 private static ArrayList<String> getOptout(String file) {
