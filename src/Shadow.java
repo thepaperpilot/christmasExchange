@@ -2,14 +2,13 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class Shadow extends JPanel{
+class Shadow extends JPanel {
 
 private static final long serialVersionUID = 1L;
 
-public int pixels;
+private final int pixels = 5;
 
-public Shadow(int pix) {
-	this.pixels = pix;
+public Shadow() {
 	Border border = BorderFactory.createEmptyBorder(pixels, pixels, pixels, pixels);
 	this.setBorder(BorderFactory.createCompoundBorder(this.getBorder(), border));
 	this.setLayout(new BorderLayout());

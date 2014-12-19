@@ -9,14 +9,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Parser {
+class Parser {
 
 public static ArrayList<Group> read() {
 	ArrayList<Group> groups = new ArrayList<>();
 	try {
 		JSONParser parser = new JSONParser();
 		JSONObject object = (JSONObject) parser.parse(new FileReader("data.json"));
-		for(Object group : (JSONArray) object.get("groups")) {
+		for (Object group : (JSONArray) object.get("groups")) {
 			switch ((String) ((JSONObject) group).get("type")) {
 				default:
 					break;
@@ -38,12 +38,15 @@ public static ArrayList<Group> read() {
 
 public static void write() {
 	try {
-		FileWriter writer = new FileWriter(new File("data_out.json"));
+		FileWriter writer = new FileWriter(new File("data.json"));
 		JSONArray groups = new JSONArray();
-		for(Group group : ChristmasExchange.groups) {
+		for (Group group : ChristmasExchange.groups) {
 			groups.add(group.toJSON());
 		}
-		writer.write(groups.toJSONString());
+		JSONObject object = new JSONObject();
+		object.put("groups", groups);
+		writer.write(object.toJSONString());
+		writer.close();
 	} catch (IOException e) {
 		ChristmasExchange.error("JSON file is currently in use. Please close any applications accessing the file and try again.");
 		e.printStackTrace();
@@ -51,40 +54,19 @@ public static void write() {
 }
 
 public static void createCSV() {
-    StringBuilder csv = new StringBuilder();
-    csv.append("Name,Giving To,Recieving From\n");
-    for (Group group : ChristmasExchange.groups) {
-        csv.append(group.toCSV());
-    }
-    try {
-        FileWriter writer = new FileWriter("output.csv");
-        writer.write(csv.toString());
-        writer.close();
-    } catch (IOException e) {
-        ChristmasExchange.error("CSV file is currently in use. Please close any applications accessing the file and try again.");
-        e.printStackTrace();
-    }
+	StringBuilder csv = new StringBuilder();
+	csv.append("Name,Giving To,Recieving From\n");
+	for (Group group : ChristmasExchange.groups) {
+		csv.append(group.toCSV());
+	}
+	try {
+		FileWriter writer = new FileWriter("output.csv");
+		writer.write(csv.toString());
+		writer.close();
+	} catch (IOException e) {
+		ChristmasExchange.error("CSV file is currently in use. Please close any applications accessing the file and try again.");
+		e.printStackTrace();
+	}
 }
 
-public static ArrayList<Person> find(JSONArray rules, ArrayList<Person> source) {
-	ArrayList<Person> out = new ArrayList<>();
-	if(rules == null || rules.isEmpty())
-		return out;
-	if(source == null || source.isEmpty())
-		return out;
-	for(Object rule : rules) {
-		if(rule instanceof Number)
-			for(Person person : source) {
-				if (person.group == ((Number) rule).intValue())
-					out.add(person);
-			}
-		else if(rule instanceof String) {
-			for (Person person : source) {
-				if (person.name.equals(rule))
-					out.add(person);
-			}
-		}
-	}
-	return out;
-}
 }
