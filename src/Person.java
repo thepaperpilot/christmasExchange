@@ -26,6 +26,8 @@ public JSONObject toJSON() {
 	person.put("group", group);
 	person.put("giving", givingTo);
 	person.put("receiving", receivingFrom);
+	person.put("lockGive", lockGive);
+	person.put("lockReceive", lockReceive);
 	return person;
 }
 

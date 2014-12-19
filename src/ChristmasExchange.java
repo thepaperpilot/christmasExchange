@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class ChristmasExchange {
 
-public static final ArrayList<Group> groups = Parser.read();
 private static final ChristmasExchange instance = new ChristmasExchange();
-private static int group = 0;
+public static final ArrayList<Group> groups = Parser.read();
+public static int group = 0;
 private JTextArea error;
 private JPanel panel;
 private JButton GENERATEButton;
@@ -21,19 +21,12 @@ private ChristmasExchange() {
 		public void actionPerformed(ActionEvent e) {
 			error.setText("");
 			if (groups.size() > group) {
-				cards.removeAll();
 				groups.get(group).clear();
 				groups.get(group).randomize();
-				cards.add(groups.get(group).toCards());
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						scrollpane.getVerticalScrollBar().setValue(0);
-					}
-				});
+				updateCards();
 			} else {
 				error("Error: Invalid group selected");
 			}
-			panel.validate();
 		}
 	});
 }
@@ -48,6 +41,21 @@ public static void main(String[] args) {
 
 	instance.cards.add(groups.get(group).toCards());
 	instance.panel.validate();
+}
+
+public static void updateCards() {
+	instance.cards.removeAll();
+	instance.cards.add(getGroup().toCards());
+	SwingUtilities.invokeLater(new Runnable() {
+		public void run() {
+			instance.scrollpane.getVerticalScrollBar().setValue(0);
+		}
+	});
+	instance.panel.validate();
+}
+
+static Group getGroup() {
+	return groups.get(group);
 }
 
 static void error(String error) {

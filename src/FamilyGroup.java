@@ -84,6 +84,10 @@ public void randomize() {
 	Random r = new Random();
 	int nulls = 0;
 	ArrayList<Person> available = new ArrayList<>(people);
+	for(Person person : people) {
+		if(person.receivingFrom != null)
+			available.remove(person);
+	}
 	for (Rule rule : rules) {
 		for (Family family : families) {
 			for (Person person : family.people) {
@@ -124,6 +128,17 @@ public void randomize() {
 
 	Parser.createCSV();
 	Parser.write();
+}
+
+@Override
+public Person find(String name) {
+	// TODO switch to UIDs
+	for(Person person : people) {
+		if(person.name.equals(name)) {
+			return person;
+		}
+	}
+	return null;
 }
 
 public void clear() {
