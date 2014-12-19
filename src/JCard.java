@@ -5,6 +5,8 @@ public JPanel card;
 private JTextArea name;
 private JTextArea giving;
 private JTextArea receiving;
+private JButton lockGive;
+private JButton lockReceive;
 
 public JCard(Person person) {
 	name.setText(person.name);
