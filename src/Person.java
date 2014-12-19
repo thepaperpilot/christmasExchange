@@ -5,37 +5,24 @@ import java.util.ArrayList;
 
 class Person {
 final String name;
-private final int family;
 final int group;
 String givingTo;
 String receivingFrom;
+boolean lockGive;
+boolean lockReceive;
 
 public Person(JSONObject person) {
-    name = (String) person.get("name");
-    family = (int) person.get("family");
-    group = (int) person.get("group");
+    name = person.get("name") == null ? "" : (String) person.get("name");
+    group = person.get("group") == null ? 0 : ((Long) person.get("group")).intValue();
     givingTo = (String) person.get("giving");
     receivingFrom = (String) person.get("receiving");
-}
-
-public ArrayList<Person> getValidPartners(ArrayList<Person> people, ArrayList<Rule> rules) {
-    ArrayList<Person> out = new ArrayList<>();
-    outer:
-    for (Person person : people) {
-        if (person.family == family)
-            continue;
-        for (Rule rule : rules)
-            if (rule.source.contains(this) && !rule.checkRule(person))
-                continue outer;
-        out.add(person);
-    }
-    return out;
+    lockGive = person.get("lockGive") != null && (boolean) person.get("lockGive");
+    lockReceive = person.get("lockReceive") != null && (boolean) person.get("lockReceive");
 }
 
 public JSONObject toJSON() {
     JSONObject person = new JSONObject();
     person.put("name", name);
-    person.put("family", family);
     person.put("group", group);
     person.put("giving", givingTo);
     person.put("receiving", receivingFrom);
@@ -46,8 +33,18 @@ public JPanel toCard() {
     return new PersonCard(this).card;
 }
 
-@Override
-public String toString() {
-    return name + "," + givingTo + "," + receivingFrom;
+public String toCSV() {
+    return name + "," + givingTo + "," + receivingFrom + "\n";
+}
+
+public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
+    int i = 0;
+    while (i < people.size()) {
+        Person person = people.get(i);
+        for (Rule rule : rules)
+            if (rule.source.contains(this) && !rule.checkRule(person))
+                people.remove(person);
+            else i++;
+    }
 }
 }

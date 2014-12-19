@@ -8,24 +8,24 @@
           "name": "Truitts",
           "people": [
             {
-              "Name": "Mary and Chuck",
-              "Group": 0
+              "name": "Mary and Chuck",
+              "group": 0
             },
             {
-              "Name": "David",
-              "Group": 0
+              "name": "David",
+              "group": 0
             },
             {
-              "Name": "Nathan and Leah",
-              "Group": 0
+              "name": "Nathan and Leah",
+              "group": 0
             },
             {
-              "Name": "Martha and Justin",
-              "Group": 0
+              "name": "Martha and Justin",
+              "group": 0
             },
             {
-              "Name": "Tim and Ashley",
-              "Group": 0
+              "name": "Tim and Ashley",
+              "group": 0
             }
           ]
         },
@@ -33,12 +33,12 @@
           "name": "Mark, etc.",
           "people": [
             {
-              "Name": "Mark",
-              "Group": 0
+              "name": "Mark",
+              "group": 0
             },
             {
-              "Name": "Thomas",
-              "Group": 0
+              "name": "Thomas",
+              "group": 0
             }
           ]
         },
@@ -46,16 +46,16 @@
           "name": "Charlotte and Gary, etc.",
           "people": [
             {
-              "Name": "Charlotte and Gary",
-              "Group": 0
+              "name": "Charlotte and Gary",
+              "group": 0
             },
             {
-              "Name": "Michelle and B.J.",
-              "Group": 0
+              "name": "Michelle and B.J.",
+              "group": 0
             },
             {
-              "Name": "Eric",
-              "Group": 0
+              "name": "Eric",
+              "group": 0
             }
           ]
         },
@@ -63,8 +63,8 @@
           "name": "Rita",
           "people": [
             {
-              "Name": "Rita",
-              "Group": 1
+              "name": "Rita",
+              "group": 1
             }
           ]
         },
@@ -72,8 +72,8 @@
           "name": "Teresa and Joe",
           "people": [
             {
-              "Name": "Teresa and Joe",
-              "Group": 1
+              "name": "Teresa and Joe",
+              "group": 1
             }
           ]
         },
@@ -81,16 +81,16 @@
           "name": "Janet and Maryann, etc.",
           "people": [
             {
-              "Name": "Janet and Maryann",
-              "Group": 2
+              "name": "Janet and Maryann",
+              "group": 2
             },
             {
-              "Name": "Melissa",
-              "Group": 0
+              "name": "Melissa",
+              "group": 0
             },
             {
-              "Name": "Jennifer and Derek",
-              "Group": 0
+              "name": "Jennifer and Derek",
+              "group": 0
             }
           ]
         },
@@ -98,8 +98,8 @@
           "name": "Wilma",
           "people": [
             {
-              "Name": "Wilma",
-              "Group": 1
+              "name": "Wilma",
+              "group": 1
             }
           ]
         },
@@ -107,49 +107,51 @@
           "name": "John and Sara",
           "people": [
             {
-              "Name": "John and Sara",
-              "Group": 2
+              "name": "John and Sara",
+              "group": 2
             }
           ]
         },
         {
           "name": "Greg and Kate",
-          "people": {
-            "Name": "Greg and Kate",
-            "Group": 0
-          }
+          "people": [
+            {
+              "name": "Greg and Kate",
+              "group": 0
+            }
+          ]
         }
       ],
       "rules": [
         {
-          "Source": [
+          "source": [
             "Greg and Kate"
           ],
-          "Whitelist": [
+          "whitelist": [
             "John and Sara"
           ]
         },
         {
-          "Source": [
+          "source": [
             "Janet and Maryann"
           ],
-          "Whitelist": [
+          "whitelist": [
             "Rita"
           ]
         },
         {
-          "Source": [
+          "source": [
             2
           ],
-          "Whitelist": [
+          "whitelist": [
             1
           ]
         },
         {
-          "Source": [
+          "source": [
             1
           ],
-          "Blacklist": [
+          "blacklist": [
             1
           ]
         }

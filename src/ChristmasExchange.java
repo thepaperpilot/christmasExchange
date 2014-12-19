@@ -12,6 +12,9 @@ private JButton GENERATEButton;
 public JTextArea error;
 private JPanel cards;
 
+public static final ArrayList<Group> groups = Parser.read();
+public static int group = 0;
+
 public static final ChristmasExchange instance = new ChristmasExchange();
 
 public static void main(String[] args) {
@@ -27,18 +30,22 @@ private ChristmasExchange() {
     GENERATEButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            cards.removeAll();
             error.setText("");
-            ArrayList<ArrayList<Person>> groups = Generator.generate();
-            for (ArrayList<Person> group : groups) {
-                for (Person person : group) {
-                    cards.add(new PersonCard(person).card);
-                }
-                //TODO add divider of some sort?
+            if(groups.size() > group) {
+                cards.removeAll();
+                groups.get(group).clear();
+                groups.get(group).randomize();
+                cards.add(groups.get(group).toCards());
+            } else {
+                error("Error: Invalid group selected");
             }
             panel.validate();
         }
     });
+}
+
+static void error(String error) {
+    instance.error.append("\n" + error);
 }
 
 private void createUIComponents() {
