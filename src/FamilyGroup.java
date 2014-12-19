@@ -126,7 +126,6 @@ public void randomize() {
 		ChristmasExchange.error(nulls + (nulls == 1 ? " person wasn't" : " people weren't") + " able to be sorted.");
 	}
 
-	Parser.createCSV();
 	Parser.write();
 }
 
