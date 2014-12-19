@@ -83,7 +83,6 @@
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <icon value="unlock.png"/>
           <text value=""/>
         </properties>
       </component>
@@ -95,7 +94,6 @@
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
           <focusPainted value="false"/>
-          <icon value="unlock.png"/>
           <text value=""/>
         </properties>
       </component>

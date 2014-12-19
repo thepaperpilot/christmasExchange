@@ -17,4 +17,6 @@ public String toCSV();
 public void clear();
 
 public void randomize();
+
+Person find(String name);
 }
