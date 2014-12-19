@@ -53,20 +53,4 @@ public static void write() {
 	}
 }
 
-public static void createCSV() {
-	StringBuilder csv = new StringBuilder();
-	csv.append("Name,Giving To,Recieving From\n");
-	for (Group group : ChristmasExchange.groups) {
-		csv.append(group.toCSV());
-	}
-	try {
-		FileWriter writer = new FileWriter("output.csv");
-		writer.write(csv.toString());
-		writer.close();
-	} catch (IOException e) {
-		ChristmasExchange.error("CSV file is currently in use. Please close any applications accessing the file and try again.");
-		e.printStackTrace();
-	}
-}
-
 }

@@ -44,11 +44,12 @@ public static void main(String[] args) {
 }
 
 public static void updateCards() {
+	final int scroll = instance.scrollpane.getVerticalScrollBar().getValue();
 	instance.cards.removeAll();
 	instance.cards.add(getGroup().toCards());
 	SwingUtilities.invokeLater(new Runnable() {
 		public void run() {
-			instance.scrollpane.getVerticalScrollBar().setValue(0);
+			instance.scrollpane.getVerticalScrollBar().setValue(scroll);
 		}
 	});
 	instance.panel.validate();
