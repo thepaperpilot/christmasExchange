@@ -2,7 +2,7 @@ import org.json.simple.JSONObject;
 
 import javax.swing.*;
 
-public interface Group {
+interface Group {
 
 public String getName();
 

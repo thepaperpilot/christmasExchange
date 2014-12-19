@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class RuleCard {
+class RuleCard {
 public JPanel card;
 private JTextArea name;
 private JTextArea giving;
@@ -13,7 +13,7 @@ public RuleCard(Rule rule) {
 }
 
 private void createUIComponents() {
-	card = new Shadow(5);
+	card = new Shadow();
 }
 
 }

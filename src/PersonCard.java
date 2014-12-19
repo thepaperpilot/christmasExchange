@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class PersonCard {
+class PersonCard {
 public JPanel card;
 private JTextArea name;
 private JTextArea giving;
@@ -19,7 +19,7 @@ public PersonCard(Person person) {
 }
 
 private void createUIComponents() {
-	card = new Shadow(5);
+	card = new Shadow();
 }
 
 }
