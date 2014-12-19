@@ -12,5 +12,9 @@ public JPanel toCards();
 
 public JSONObject toJSON();
 
+public String toCSV();
+
+public void clear();
+
 public void randomize();
 }

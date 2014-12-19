@@ -9,19 +9,10 @@ final ArrayList<Person> source;
 private final ArrayList<Person> whitelist;
 private final ArrayList<Person> blacklist;
 
-public Rule(JSONObject rule) {
-    source = new ArrayList<>();
-    for(Object person : (JSONArray) rule.get("source")) {
-        source.add(new Person((JSONObject) person));
-    }
-    whitelist = new ArrayList<>();
-    for(Object person : (JSONArray) rule.get("whitelist")) {
-        whitelist.add(new Person((JSONObject) person));
-    }
-    blacklist = new ArrayList<>();
-    for(Object person : (JSONArray) rule.get("blacklist")) {
-        blacklist.add(new Person((JSONObject) person));
-    }
+public Rule(JSONObject rule, ArrayList<Person> people) {
+    source = Parser.find((JSONArray) rule.get("source"), people);
+    whitelist = Parser.find((JSONArray) rule.get("whitelist"), people);
+    blacklist = Parser.find((JSONArray) rule.get("blacklist"), people);
 }
 
 public boolean checkRule(Person check) {
