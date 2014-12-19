@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -8,10 +9,8 @@ public class ChristmasExchange {
 private JPanel panel;
 
 private JButton GENERATEButton;
-private JTextArea textArea1;
-private JTextArea textArea2;
-private JTextArea textArea3;
 public JTextArea error;
+private JPanel cards;
 
 public static final ChristmasExchange instance = new ChristmasExchange();
 
@@ -27,25 +26,21 @@ private ChristmasExchange() {
     GENERATEButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            cards.removeAll();
             error.setText("");
             ArrayList<ArrayList<Person>> groups = Generator.generate();
-            String names = "";
-            String to = "";
-            String from = "";
             for (ArrayList<Person> group : groups) {
                 for (Person person : group) {
-                    names += person.name + "\n";
-                    to += person.givingTo + "\n";
-                    from += person.receivingFrom + "\n";
+                    cards.add(new JCard(person).card);
                 }
-                names += "\n";
-                to += "\n";
-                from += "\n";
+                //TODO add divider of some sort?
             }
-            textArea1.setText(names.trim());
-            textArea2.setText(to.trim());
-            textArea3.setText(from.trim());
+            panel.validate();
         }
     });
+}
+
+private void createUIComponents() {
+    cards = new JPanel(new GridLayout(0, 1));
 }
 }
