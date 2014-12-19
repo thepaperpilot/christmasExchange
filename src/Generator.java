@@ -125,14 +125,13 @@ private static ArrayList<ArrayList<Person>> getGroups(String file, ArrayList<Str
         for (Object groupObject : groups) {
             JSONArray jsonFamilies = (JSONArray) groupObject;
             ArrayList<Person> group = new ArrayList<>();
-            for (int i1 = 0; i1 < jsonFamilies.size(); i1++) {
-                Object family = jsonFamilies.get(i1);
+            for (Object family : jsonFamilies) {
                 JSONArray jsonFamily = (JSONArray) family;
                 for (Object person : jsonFamily) {
                     JSONObject jsonPerson = (JSONObject) person;
                     if (optout.contains(jsonPerson.get("Name")))
                         continue;
-                    group.add(new Person((String) jsonPerson.get("Name"), i1, ((Number) jsonPerson.get("Group")).intValue()));
+                    group.add(new Person(jsonPerson));
                 }
             }
             people.add(group);

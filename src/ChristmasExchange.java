@@ -32,7 +32,7 @@ private ChristmasExchange() {
             ArrayList<ArrayList<Person>> groups = Generator.generate();
             for (ArrayList<Person> group : groups) {
                 for (Person person : group) {
-                    cards.add(new JCard(person).card);
+                    cards.add(new PersonCard(person).card);
                 }
                 //TODO add divider of some sort?
             }
