@@ -98,6 +98,8 @@ public void randomize() {
 				ArrayList<Person> specificAvailable = new ArrayList<>(available);
 				specificAvailable.removeAll(family.people);
 				person.applyRules(specificAvailable, rules);
+				if(specificAvailable.size() != 1)
+					specificAvailable.remove(find(person.receivingFrom));
 				if (specificAvailable.size() <= 0)
 					continue;
 				Person partner = specificAvailable.get(specificAvailable.size() == 1 ? 0 : r.nextInt(specificAvailable.size()));
