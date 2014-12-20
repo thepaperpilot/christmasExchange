@@ -9,6 +9,7 @@ private JTextArea giving;
 private JTextArea receiving;
 private JButton lockGive;
 private JButton lockReceive;
+private JTextArea group;
 
 // TODO add button to "disable" entire person (opt-out)
 // TODO add button to add a person (or family or w/e)
@@ -18,6 +19,8 @@ public PersonCard(final Person person) {
 	name.setText(person.name);
 	giving.setText(person.givingTo);
 	receiving.setText(person.receivingFrom);
+	if(person.group != 0)
+		group.setText(" (Group " + String.valueOf(person.group) + ")");
 	ImageIcon lock = new ImageIcon("lock.png");
 	ImageIcon unlock = new ImageIcon("unlock.png");
 	lockGive.setIcon(person.lockGive ? lock : unlock);
