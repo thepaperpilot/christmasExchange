@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -8,24 +7,23 @@ public class ChristmasExchange {
 
 private static final ChristmasExchange instance = new ChristmasExchange();
 public static final ArrayList<Group> groups = Parser.read();
-public static int group = 0;
+public static final ArrayList<Tab> groupTabs = new ArrayList<>();
 private JTextArea error;
 private JPanel panel;
 private JButton GENERATEButton;
-private JPanel cards;
-private JScrollPane scrollpane;
+private JTabbedPane tabs;
 
 private ChristmasExchange() {
 	GENERATEButton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			error.setText("");
-			if (groups.size() > group) {
-				groups.get(group).clear();
-				groups.get(group).randomize();
-				updateCards();
-			} else {
+			if (groups.size() <= 0) {
 				error("Error: Invalid group selected");
+			} else {
+				groups.get(tabs.getSelectedIndex()).clear();
+				groups.get(tabs.getSelectedIndex()).randomize();
+				updateCards();
 			}
 		}
 	});
@@ -39,31 +37,26 @@ public static void main(String[] args) {
 	frame.setSize(400, 600);
 	frame.setVisible(true);
 
-	instance.cards.add(groups.get(group).toCards());
-	instance.panel.validate();
+	for (int i = 0; i < groups.size(); i++) {
+		Group group = groups.get(i);
+		Tab tab = new Tab(group);
+		instance.tabs.add(tab.panel);
+		instance.tabs.setTitleAt(i, group.getName());
+		groupTabs.add(tab);
+	}
 }
 
 public static void updateCards() {
-	final int scroll = instance.scrollpane.getVerticalScrollBar().getValue();
-	instance.cards.removeAll();
-	instance.cards.add(getGroup().toCards());
-	SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			instance.scrollpane.getVerticalScrollBar().setValue(scroll);
-		}
-	});
-	instance.panel.validate();
+	for(Tab tab : groupTabs) {
+		tab.updateCards();
+	}
 }
 
 static Group getGroup() {
-	return groups.get(group);
+	return groups.get(instance.tabs.getSelectedIndex());
 }
 
 static void error(String error) {
 	instance.error.append("\n" + error);
-}
-
-private void createUIComponents() {
-	cards = new JPanel(new GridLayout(0, 1));
 }
 }

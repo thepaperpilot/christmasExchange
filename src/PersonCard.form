@@ -34,6 +34,7 @@
           <contentAreaFilled value="true"/>
           <focusPainted value="false"/>
           <focusable value="true"/>
+          <icon value="dots.png"/>
           <text value=""/>
         </properties>
       </component>
