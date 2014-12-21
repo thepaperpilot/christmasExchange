@@ -30,6 +30,13 @@ public FamilyGroup(JSONObject group) {
 		}
 }
 
+public FamilyGroup(String text) {
+	name = text;
+	families = new ArrayList<>();
+	people = new ArrayList<>();
+	rules = new ArrayList<>();
+}
+
 @Override
 public String getName() {
 	return name;

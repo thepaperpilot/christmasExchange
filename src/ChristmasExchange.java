@@ -7,7 +7,7 @@ public class ChristmasExchange {
 
 private static final ChristmasExchange instance = new ChristmasExchange();
 public static final ArrayList<Group> groups = Parser.read();
-public static final ArrayList<Tab> groupTabs = new ArrayList<>();
+public static ArrayList<Tab> groupTabs = new ArrayList<>();
 private JTextArea error;
 private JPanel panel;
 private JButton GENERATEButton;
@@ -37,6 +37,12 @@ public static void main(String[] args) {
 	frame.setSize(400, 600);
 	frame.setVisible(true);
 
+	populateTabs();
+}
+
+private static void populateTabs() {
+	groupTabs = new ArrayList<>();
+	instance.tabs.removeAll();
 	for (int i = 0; i < groups.size(); i++) {
 		Group group = groups.get(i);
 		Tab tab = new Tab(group);
@@ -44,6 +50,11 @@ public static void main(String[] args) {
 		instance.tabs.setTitleAt(i, group.getName());
 		groupTabs.add(tab);
 	}
+
+	instance.tabs.add(new AddGroup().panel);
+	instance.tabs.setTitleAt(instance.tabs.getTabCount() - 1, "+");
+
+	updateCards();
 }
 
 public static void updateCards() {
@@ -58,5 +69,11 @@ static Group getGroup() {
 
 static void error(String error) {
 	instance.error.append("\n" + error);
+}
+
+static void addGroup(Group group) {
+	groups.add(group);
+	Parser.write();
+	populateTabs();
 }
 }
