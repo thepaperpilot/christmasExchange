@@ -8,7 +8,7 @@ public String getName();
 
 public void setName(String name);
 
-public JPanel toCards();
+public Box toCards();
 
 public JSONObject toJSON();
 
