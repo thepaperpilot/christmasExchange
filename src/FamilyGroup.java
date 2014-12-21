@@ -2,7 +2,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -48,8 +47,8 @@ public void setName(String name) {
 }
 
 @Override
-public JPanel toCards() {
-	JPanel group = new JPanel(new GridLayout(0, 1));
+public Box toCards() {
+	Box group = new Box(BoxLayout.PAGE_AXIS);
 	for (Family family : families) {
 		for (JPanel panel : family.toCards())
 			group.add(panel);
@@ -185,7 +184,7 @@ private class Family {
 
 	public ArrayList<JPanel> toCards() {
 		ArrayList<JPanel> cards = new ArrayList<>();
-		// TODO family header
+		cards.add(new FamilyHeader(name).panel);
 		for (Person person : people) {
 			cards.add(person.toCard());
 		}
