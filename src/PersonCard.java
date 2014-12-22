@@ -1,15 +1,27 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
 class PersonCard {
-public JPanel card;
 private JTextArea name;
 private JTextArea giving;
 private JTextArea receiving;
 private JButton lockGive;
 private JButton lockReceive;
 private JTextArea group;
+private JTextField personName;
+private JButton delete;
+private JButton rename;
+public JPanel cards;
+private JButton toPerson;
+private JButton toSettings;
+private JSpinner numGroup;
+private JPanel people;
+private JPanel settings;
 
 // TODO add button to "disable" entire person (opt-out)
 // TODO add button to add a person (or family or w/e)
@@ -17,6 +29,7 @@ private JTextArea group;
 
 public PersonCard(final Person person) {
 	name.setText(person.name);
+	personName.setText(person.name);
 	giving.setText(person.givingTo);
 	receiving.setText(person.receivingFrom);
 	if(person.group != 0)
@@ -47,10 +60,42 @@ public PersonCard(final Person person) {
 			ChristmasExchange.updateCards();
 		}
 	});
+	toPerson.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			((CardLayout) cards.getLayout()).show(cards, "person");
+		}
+	});
+	toSettings.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			((CardLayout) cards.getLayout()).show(cards, "settings");
+		}
+	});
+	numGroup.addChangeListener(new ChangeListener() {
+		@Override
+		public void stateChanged(ChangeEvent changeEvent) {
+			person.group = (int) numGroup.getValue();
+			Parser.write();
+			group.setText(person.group == 0 ? "" : " (Group " + String.valueOf(person.group) + ")");
+		}
+	});
+	rename.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			person.name = personName.getText();
+			Parser.write();
+			name.setText(person.name);
+		}
+	});
 }
 
+
 private void createUIComponents() {
-	card = new Shadow();
+	people = new Shadow();
+	settings = new Shadow();
+	personName = new JTextField();
+	personName.setBorder(BorderFactory.createEmptyBorder());
 }
 
 }

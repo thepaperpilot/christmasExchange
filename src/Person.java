@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 class Person {
-final String name;
-final int group;
+String name;
+int group;
 String givingTo;
 String receivingFrom;
 boolean lockGive;
@@ -32,7 +32,7 @@ public JSONObject toJSON() {
 }
 
 public JPanel toCard() {
-	return new PersonCard(this).card;
+	return new PersonCard(this).cards;
 }
 
 public String toCSV() {
