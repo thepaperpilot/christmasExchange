@@ -26,12 +26,7 @@ public static ArrayList<Group> read() {
 				// TODO add other group types
 			}
 		}
-	} catch (IOException e) {
-		ChristmasExchange.error("Can't read the file. Please fix and try again.");
-		e.printStackTrace();
-	} catch (NullPointerException | ParseException e) {
-		ChristmasExchange.error("Error parsing the file. Please fix and try again.");
-		e.printStackTrace();
+	} catch (IOException | NullPointerException | ParseException ignored) {
 	}
 	return groups;
 }
