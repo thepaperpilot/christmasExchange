@@ -21,9 +21,8 @@ private ChristmasExchange() {
 			if (groups.size() <= 0) {
 				error("Error: Invalid group selected");
 			} else {
-				groups.get(tabs.getSelectedIndex()).clear();
-				groups.get(tabs.getSelectedIndex()).randomize();
-				updateCards();
+				getGroup().randomize();
+				groupTabs.get(tabs.getSelectedIndex()).updateCards();
 			}
 		}
 	});
@@ -74,18 +73,21 @@ static void error(String error) {
 static void addGroup(Group group) {
 	groups.add(group);
 	Parser.write();
-	populateTabs();
+	Tab tab = new Tab(group);
+	instance.tabs.add(tab.panel, instance.tabs.getTabCount() - 1);
+	instance.tabs.setTitleAt(instance.tabs.getTabCount() - 2, group.getName());
+	groupTabs.add(tab);
 }
 
 static void removeGroup() {
 	groups.remove(getGroup());
 	Parser.write();
-	populateTabs();
+	instance.tabs.remove(instance.tabs.getSelectedIndex());
 }
 
 static void renameGroup(String name) {
 	getGroup().setName(name);
 	Parser.write();
-	populateTabs();
+	instance.tabs.setTitleAt(instance.tabs.getSelectedIndex(), name);
 }
 }
