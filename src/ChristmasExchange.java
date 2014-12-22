@@ -76,4 +76,16 @@ static void addGroup(Group group) {
 	Parser.write();
 	populateTabs();
 }
+
+static void removeGroup() {
+	groups.remove(getGroup());
+	Parser.write();
+	populateTabs();
+}
+
+static void renameGroup(String name) {
+	getGroup().setName(name);
+	Parser.write();
+	populateTabs();
+}
 }
