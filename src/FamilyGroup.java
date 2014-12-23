@@ -91,8 +91,16 @@ public void randomize() {
 	int nulls = 0;
 	ArrayList<Person> available = new ArrayList<>(people);
 	for(Person person : people) {
-		if(person.receivingFrom != null)
+		if(!person.participating)
 			available.remove(person);
+		if(!person.lockGive) {
+			person.givingTo = null;
+		}
+		if(person.lockReceive) {
+			available.remove(person);
+		} else {
+			person.receivingFrom = null;
+		}
 	}
 	for (Rule rule : rules) {
 		for (Family family : families) {
@@ -100,6 +108,8 @@ public void randomize() {
 				if (!rule.source.contains(person))
 					continue;
 				if (person.givingTo != null)
+					continue;
+				if (!person.participating)
 					continue;
 				ArrayList<Person> specificAvailable = new ArrayList<>(available);
 				specificAvailable.removeAll(family.people);
@@ -117,6 +127,8 @@ public void randomize() {
 	}
 	for (Person person : people) {
 		if (person.givingTo != null)
+			continue;
+		if (!person.participating)
 			continue;
 		if (available.size() <= 0 || (available.size() == 1 && available.contains(person))) {
 			nulls++;

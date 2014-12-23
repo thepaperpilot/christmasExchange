@@ -2,26 +2,25 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="PersonCard">
   <grid id="2d24c" binding="cards" layout-manager="CardLayout" hgap="0" vgap="0" show="3e28a">
     <constraints>
-      <xy x="20" y="20" width="351" height="271"/>
+      <xy x="20" y="20" width="351" height="308"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="3e28a" binding="people" custom-create="true" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="1" vgap="1">
+      <grid id="3e28a" binding="people" custom-create="true" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="true" hgap="1" vgap="1">
         <margin top="5" left="5" bottom="5" right="5"/>
         <constraints>
           <card name="person"/>
         </constraints>
         <properties>
-          <autoscrolls value="false"/>
-          <background color="-1"/>
+          <background color="-16777216"/>
           <opaque value="false"/>
         </properties>
         <border type="none"/>
         <children>
           <component id="95d48" class="javax.swing.JButton" binding="toSettings">
             <constraints>
-              <grid row="0" column="3" row-span="4" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -33,35 +32,9 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="e2a39" class="javax.swing.JTextArea" binding="giving">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <editable value="false"/>
-              <focusable value="true"/>
-              <font size="12"/>
-              <opaque value="false"/>
-              <text value="Label"/>
-            </properties>
-          </component>
-          <component id="84c99" class="javax.swing.JTextArea" binding="receiving">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <editable value="false"/>
-              <focusable value="true"/>
-              <font size="12"/>
-              <opaque value="false"/>
-              <text value="Label"/>
-            </properties>
-          </component>
           <component id="ea084" class="javax.swing.JLabel" default-binding="true">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -72,7 +45,7 @@
           </component>
           <component id="30ef6" class="javax.swing.JLabel" default-binding="true">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -81,16 +54,9 @@
               <text value="Receiving from: "/>
             </properties>
           </component>
-          <hspacer id="1b446">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="-1" height="5"/>
-              </grid>
-            </constraints>
-          </hspacer>
           <component id="a8fa5" class="javax.swing.JButton" binding="lockGive">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -104,7 +70,7 @@
           </component>
           <component id="a7938" class="javax.swing.JButton" binding="lockReceive">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -115,43 +81,59 @@
               <text value=""/>
             </properties>
           </component>
-          <grid id="dba95" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <component id="e2a39" class="javax.swing.JTextArea" binding="giving">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
             </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="4ea17" class="javax.swing.JTextArea" binding="name">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <font size="16" style="1"/>
-                  <opaque value="false"/>
-                  <text value="Label"/>
-                </properties>
-              </component>
-              <component id="de4ec" class="javax.swing.JTextArea" binding="group">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                  <editable value="false"/>
-                  <font size="12"/>
-                  <opaque value="false"/>
-                  <text value=""/>
-                </properties>
-              </component>
-            </children>
-          </grid>
+            <properties>
+              <background color="-1"/>
+              <editable value="false"/>
+              <focusable value="true"/>
+              <font size="12"/>
+              <opaque value="false"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="84c99" class="javax.swing.JTextArea" binding="receiving">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <editable value="false"/>
+              <focusable value="true"/>
+              <font size="12"/>
+              <opaque value="false"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="de4ec" class="javax.swing.JTextArea" binding="group">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <editable value="false"/>
+              <font size="12"/>
+              <opaque value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="4ea17" class="javax.swing.JTextArea" binding="name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <editable value="false"/>
+              <font size="16" style="1"/>
+              <opaque value="false"/>
+              <text value="Label"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="95328" binding="settings" custom-create="true" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="95328" binding="settings" custom-create="true" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="5" left="5" bottom="5" right="5"/>
         <constraints>
           <card name="settings"/>
@@ -163,7 +145,7 @@
         <children>
           <vspacer id="f1ede">
             <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
           <component id="e46bd" class="javax.swing.JTextField" binding="personName" custom-create="true">
@@ -177,7 +159,7 @@
           </component>
           <component id="83303" class="javax.swing.JButton" binding="delete">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <contentAreaFilled value="false"/>
@@ -245,6 +227,17 @@
               </component>
             </children>
           </grid>
+          <component id="d5ce8" class="javax.swing.JCheckBox" binding="participating">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <focusPainted value="false"/>
+              <horizontalTextPosition value="10"/>
+              <selected value="true"/>
+              <text value="Participating?"/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>

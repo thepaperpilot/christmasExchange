@@ -22,18 +22,19 @@ private JButton toSettings;
 private JSpinner numGroup;
 private JPanel people;
 private JPanel settings;
+private JCheckBox participating;
 
-// TODO add button to "disable" entire person (opt-out)
 // TODO add button to add a person (or family or w/e)
-// TODO add menu to edit or delete person
 
 public PersonCard(final Person person) {
 	name.setText(person.name);
 	personName.setText(person.name);
 	giving.setText(person.givingTo);
 	receiving.setText(person.receivingFrom);
-	if(person.group != 0)
-		group.setText(" (Group " + String.valueOf(person.group) + ")");
+	group.setText(person.group == 0 ? "No Group Selected" : "(Group " + String.valueOf(person.group) + ")");
+	people.setBackground(person.participating ? Color.black : Color.red);
+	settings.setBackground(person.participating ? Color.black : Color.red);
+	participating.setSelected(person.participating);
 	ImageIcon lock = new ImageIcon("lock.png");
 	ImageIcon unlock = new ImageIcon("unlock.png");
 	lockGive.setIcon(person.lockGive ? lock : unlock);
@@ -77,7 +78,7 @@ public PersonCard(final Person person) {
 		public void stateChanged(ChangeEvent changeEvent) {
 			person.group = (int) numGroup.getValue();
 			Parser.write();
-			group.setText(person.group == 0 ? "" : " (Group " + String.valueOf(person.group) + ")");
+			group.setText(person.group == 0 ? "No Group Selected" : "(Group " + String.valueOf(person.group) + ")");
 		}
 	});
 	rename.addActionListener(new ActionListener() {
@@ -86,6 +87,23 @@ public PersonCard(final Person person) {
 			person.name = personName.getText();
 			Parser.write();
 			name.setText(person.name);
+		}
+	});
+	delete.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			// TODO implement this
+			Parser.write();
+		}
+	});
+	participating.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			person.participating = participating.isSelected();
+			Parser.write();
+			people.setBackground(person.participating ? Color.black : Color.red);
+			settings.setBackground(person.participating ? Color.black : Color.red);
+
 		}
 	});
 }

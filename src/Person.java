@@ -10,6 +10,7 @@ String givingTo;
 String receivingFrom;
 boolean lockGive;
 boolean lockReceive;
+public boolean participating;
 
 public Person(JSONObject person) {
 	name = person.get("name") == null ? "" : (String) person.get("name");
@@ -18,6 +19,7 @@ public Person(JSONObject person) {
 	receivingFrom = (String) person.get("receiving");
 	lockGive = person.get("lockGive") != null && (boolean) person.get("lockGive");
 	lockReceive = person.get("lockReceive") != null && (boolean) person.get("lockReceive");
+	participating = person.get("participating") == null || (boolean) person.get("participating");
 }
 
 public JSONObject toJSON() {
@@ -28,6 +30,7 @@ public JSONObject toJSON() {
 	person.put("receiving", receivingFrom);
 	person.put("lockGive", lockGive);
 	person.put("lockReceive", lockReceive);
+	person.put("participating", participating);
 	return person;
 }
 
