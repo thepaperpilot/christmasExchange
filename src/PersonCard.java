@@ -32,6 +32,7 @@ public PersonCard(final Person person) {
 	giving.setText(person.givingTo);
 	receiving.setText(person.receivingFrom);
 	group.setText(person.group == 0 ? "No Group Selected" : "(Group " + String.valueOf(person.group) + ")");
+	numGroup.setValue(person.group);
 	people.setBackground(person.participating ? Color.black : Color.red);
 	settings.setBackground(person.participating ? Color.black : Color.red);
 	participating.setSelected(person.participating);
