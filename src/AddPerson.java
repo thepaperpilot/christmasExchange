@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AddPerson {
+class AddPerson {
 private JPanel cards;
 private JPanel settings;
 private JTextField personName;

@@ -3,11 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ChristmasExchange {
+class ChristmasExchange {
 
-private static final ChristmasExchange instance = new ChristmasExchange();
 public static final ArrayList<Group> groups = Parser.read();
-public static ArrayList<Tab> groupTabs = new ArrayList<>();
+private static final ChristmasExchange instance = new ChristmasExchange();
+private static ArrayList<Tab> groupTabs = new ArrayList<>();
 private JTextArea error;
 private JPanel panel;
 private JButton GENERATEButton;
@@ -22,7 +22,6 @@ private ChristmasExchange() {
 				error("Error: Invalid group selected");
 			} else {
 				getGroup().randomize();
-				groupTabs.get(tabs.getSelectedIndex()).updateCards();
 			}
 		}
 	});
@@ -52,14 +51,6 @@ private static void populateTabs() {
 
 	instance.tabs.add(new AddGroup().panel);
 	instance.tabs.setTitleAt(instance.tabs.getTabCount() - 1, "+");
-
-	updateCards();
-}
-
-public static void updateCards() {
-	for(Tab tab : groupTabs) {
-		tab.updateCards();
-	}
 }
 
 static Group getGroup() {

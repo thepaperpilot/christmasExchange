@@ -4,19 +4,18 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 class PersonCard {
+public JTextArea giving;
+public JTextArea receiving;
+public JPanel cards;
 private JTextArea name;
-private JTextArea giving;
-private JTextArea receiving;
 private JButton lockGive;
 private JButton lockReceive;
 private JTextArea group;
 private JTextField personName;
 private JButton delete;
 private JButton rename;
-public JPanel cards;
 private JButton toPerson;
 private JButton toSettings;
 private JSpinner numGroup;
@@ -46,9 +45,11 @@ public PersonCard(final Person person) {
 		public void actionPerformed(ActionEvent e) {
 			person.lockGive = !person.lockGive;
 			Person partner = ChristmasExchange.getGroup().find(person.givingTo);
-			partner.lockReceive = person.lockGive;
 			lockGive.setIcon(person.lockGive ? lock : unlock);
-			partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
+			if (partner != null) {
+				partner.lockReceive = person.lockGive;
+				partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
+			}
 			Parser.write();
 		}
 	});
@@ -58,9 +59,11 @@ public PersonCard(final Person person) {
 		public void actionPerformed(ActionEvent e) {
 			person.lockReceive = !person.lockReceive;
 			Person partner = ChristmasExchange.getGroup().find(person.receivingFrom);
-			partner.lockGive = person.lockReceive;
-			lockGive.setIcon(person.lockGive ? lock : unlock);
-			partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
+			lockReceive.setIcon(person.lockReceive ? lock : unlock);
+			if (partner != null) {
+				partner.lockGive = person.lockReceive;
+				partner.getCard().lockGive.setIcon(partner.lockGive ? lock : unlock);
+			}
 			Parser.write();
 		}
 	});
@@ -95,7 +98,7 @@ public PersonCard(final Person person) {
 	delete.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			// TODO implement this
+			// TODO implement deleting people
 			Parser.write();
 		}
 	});
@@ -118,5 +121,4 @@ private void createUIComponents() {
 	personName = new JTextField();
 	personName.setBorder(BorderFactory.createEmptyBorder());
 }
-
 }
