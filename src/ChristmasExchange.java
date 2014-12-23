@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public static void main(String[] args) {
 	frame.setContentPane(instance.panel);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.pack();
-	frame.setSize(400, 600);
+	frame.setMinimumSize(new Dimension(400, 300));
+	frame.setSize(800, 600);
 	frame.setVisible(true);
 
 	populateTabs();
