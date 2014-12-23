@@ -2,6 +2,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -50,8 +53,7 @@ public void setName(String name) {
 public Box toCards() {
 	Box group = new Box(BoxLayout.PAGE_AXIS);
 	for (Family family : families) {
-		for (JPanel panel : family.toCards())
-			group.add(panel);
+		group.add(family.toCards());
 	}
 	return group;
 }
@@ -198,13 +200,38 @@ private class Family {
 		return family;
 	}
 
-	public ArrayList<JPanel> toCards() {
-		ArrayList<JPanel> cards = new ArrayList<>();
-		cards.add(new FamilyHeader(name).panel);
+	public JPanel toCards() {
+		final JPanel card = new JPanel();
+		card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
+		card.add(new FamilyHeader(name).panel);
+		JPanel peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
+		peopleCards.setSize(1, 1);
+		peopleCards.addComponentListener(new ComponentListener() {
+			@Override
+			public void componentResized(ComponentEvent componentEvent) {
+				card.revalidate();
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent componentEvent) {
+
+			}
+
+			@Override
+			public void componentShown(ComponentEvent componentEvent) {
+
+			}
+
+			@Override
+			public void componentHidden(ComponentEvent componentEvent) {
+
+			}
+		});
 		for (Person person : people) {
-			cards.add(person.getCard().cards);
+			peopleCards.add(person.getCard().cards);
 		}
-		return cards;
+		card.add(peopleCards);
+		return card;
 	}
 
 	public String toCSV() {
