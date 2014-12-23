@@ -1,17 +1,16 @@
 import org.json.simple.JSONObject;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 class Person {
+public boolean participating;
 String name;
 int group;
 String givingTo;
 String receivingFrom;
 boolean lockGive;
 boolean lockReceive;
-public boolean participating;
-private PersonCard card;
+private final PersonCard card;
 
 public Person(JSONObject person) {
 	name = person.get("name") == null ? "" : (String) person.get("name");

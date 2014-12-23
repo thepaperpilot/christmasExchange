@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddGroup {
+class AddGroup {
 public JPanel panel;
 private JTextField groupName;
 private JComboBox type;

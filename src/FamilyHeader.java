@@ -1,9 +1,9 @@
 import javax.swing.*;
 
-public class FamilyHeader {
+class FamilyHeader {
 private final String familyName;
-private JTextArea name;
 public JPanel panel;
+private JTextArea name;
 
 public FamilyHeader(String name) {
 	familyName = name;

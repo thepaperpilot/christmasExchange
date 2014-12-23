@@ -20,7 +20,6 @@ public Rule(JSONObject rule, ArrayList<Person> people) {
 private static ArrayList<Person> find(JSONArray rules, ArrayList<Person> source) {
 	ArrayList<Person> out = new ArrayList<>();
 	if (rules == null || rules.isEmpty())
-// TODO add button to "disable" entire person (opt-out)
 		return out;
 	if (source == null || source.isEmpty())
 		return out;

@@ -3,10 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Tab {
+class Tab {
+private final Group group;
+public JPanel panel;
 private JScrollPane scrollpanePeople;
 private JPanel people;
-public JPanel panel;
 private JTextField groupName;
 private JButton delete;
 private JPanel rules;
@@ -16,8 +17,6 @@ private JButton settingsButton;
 private JButton peopleButton;
 private JScrollPane scrollpaneRules;
 private JButton rename;
-
-final Group group;
 
 public Tab(final Group group) {
 	this.group = group;
@@ -72,27 +71,5 @@ private void createUIComponents() {
 
 	groupName = new JTextField();
 	groupName.setBorder(BorderFactory.createEmptyBorder());
-}
-
-public void updateCards() {
-	final int scroll = scrollpanePeople.getVerticalScrollBar().getValue();
-	people.removeAll();
-	people.add(group.toCards());
-	SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			scrollpanePeople.getVerticalScrollBar().setValue(scroll);
-		}
-	});
-
-	final int scroll1 = scrollpaneRules.getVerticalScrollBar().getValue();
-	rules.removeAll();
-	//rules.add(rules.toCards());
-	SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			scrollpaneRules.getVerticalScrollBar().setValue(scroll1);
-		}
-	});
-
-	panel.validate();
 }
 }

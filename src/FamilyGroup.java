@@ -7,10 +7,10 @@ import java.util.Random;
 
 public class FamilyGroup implements Group {
 
-private String name;
 private final ArrayList<Family> families;
 private final ArrayList<Person> people;
 private final ArrayList<Rule> rules;
+private String name;
 
 public FamilyGroup(JSONObject group) {
 	name = group.get("name") == null ? "" : (String) group.get("name");
@@ -44,11 +44,6 @@ public String getName() {
 @Override
 public void setName(String name) {
 	this.name = name;
-}
-
-@Override
-public ArrayList<Person> getPeople() {
-	return people;
 }
 
 @Override
@@ -95,15 +90,13 @@ public void randomize() {
 	Random r = new Random();
 	int nulls = 0;
 	ArrayList<Person> available = new ArrayList<>(people);
-	for(Person person : people) {
-		if(!person.participating)
+	for (Person person : people) {
+		if (!person.participating || person.lockReceive)
 			available.remove(person);
-		if(!person.lockGive) {
+		if (!person.lockGive) {
 			person.givingTo = null;
 		}
-		if(person.lockReceive) {
-			available.remove(person);
-		} else {
+		if (!person.lockReceive) {
 			person.receivingFrom = null;
 		}
 	}
@@ -119,7 +112,7 @@ public void randomize() {
 				ArrayList<Person> specificAvailable = new ArrayList<>(available);
 				specificAvailable.removeAll(family.people);
 				person.applyRules(specificAvailable, rules);
-				if(specificAvailable.size() != 1)
+				if (specificAvailable.size() != 1)
 					specificAvailable.remove(find(person.receivingFrom));
 				if (specificAvailable.size() <= 0)
 					continue;
@@ -151,14 +144,29 @@ public void randomize() {
 		ChristmasExchange.error(nulls + (nulls == 1 ? " person wasn't" : " people weren't") + " able to be sorted.");
 	}
 
+	// Setting the text of all the people at once would,
+	// for some reason, refresh all the cards, and scroll almost to the bottom of the people list
+	// Moving it to another thread (NO OTHER CHANGES) fixed it, so... /rant
+
+	// tl;dr Java is stupid, but at least now randomizing doesn't flash all the cards :)
+	new Thread(new Runnable() {
+		@Override
+		public void run() {
+			for (Person person : people) {
+				person.getCard().giving.setText(person.givingTo);
+				person.getCard().receiving.setText(person.receivingFrom);
+			}
+		}
+	}).start();
+
 	Parser.write();
 }
 
 @Override
 public Person find(String name) {
 	// TODO switch to UIDs
-	for(Person person : people) {
-		if(person.name.equals(name)) {
+	for (Person person : people) {
+		if (person.name.equals(name)) {
 			return person;
 		}
 	}
