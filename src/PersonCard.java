@@ -36,8 +36,8 @@ public PersonCard(final Person person) {
 	people.setBackground(person.participating ? Color.black : Color.red);
 	settings.setBackground(person.participating ? Color.black : Color.red);
 	participating.setSelected(person.participating);
-	ImageIcon lock = new ImageIcon("lock.png");
-	ImageIcon unlock = new ImageIcon("unlock.png");
+	final ImageIcon lock = new ImageIcon("lock.png");
+	final ImageIcon unlock = new ImageIcon("unlock.png");
 	lockGive.setIcon(person.lockGive ? lock : unlock);
 	lockReceive.setIcon(person.lockReceive ? lock : unlock);
 
@@ -47,8 +47,9 @@ public PersonCard(final Person person) {
 			person.lockGive = !person.lockGive;
 			Person partner = ChristmasExchange.getGroup().find(person.givingTo);
 			partner.lockReceive = person.lockGive;
+			lockGive.setIcon(person.lockGive ? lock : unlock);
+			partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
 			Parser.write();
-			ChristmasExchange.updateCards();
 		}
 	});
 
@@ -58,8 +59,9 @@ public PersonCard(final Person person) {
 			person.lockReceive = !person.lockReceive;
 			Person partner = ChristmasExchange.getGroup().find(person.receivingFrom);
 			partner.lockGive = person.lockReceive;
+			lockGive.setIcon(person.lockGive ? lock : unlock);
+			partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
 			Parser.write();
-			ChristmasExchange.updateCards();
 		}
 	});
 	toPerson.addActionListener(new ActionListener() {

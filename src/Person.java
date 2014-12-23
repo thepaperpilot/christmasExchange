@@ -11,6 +11,7 @@ String receivingFrom;
 boolean lockGive;
 boolean lockReceive;
 public boolean participating;
+private PersonCard card;
 
 public Person(JSONObject person) {
 	name = person.get("name") == null ? "" : (String) person.get("name");
@@ -20,6 +21,8 @@ public Person(JSONObject person) {
 	lockGive = person.get("lockGive") != null && (boolean) person.get("lockGive");
 	lockReceive = person.get("lockReceive") != null && (boolean) person.get("lockReceive");
 	participating = person.get("participating") == null || (boolean) person.get("participating");
+
+	card = new PersonCard(this);
 }
 
 public JSONObject toJSON() {
@@ -32,10 +35,6 @@ public JSONObject toJSON() {
 	person.put("lockReceive", lockReceive);
 	person.put("participating", participating);
 	return person;
-}
-
-public JPanel toCard() {
-	return new PersonCard(this).cards;
 }
 
 public String toCSV() {
@@ -54,5 +53,9 @@ public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 			}
 		i++;
 	}
+}
+
+public PersonCard getCard() {
+	return card;
 }
 }

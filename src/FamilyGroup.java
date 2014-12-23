@@ -47,6 +47,11 @@ public void setName(String name) {
 }
 
 @Override
+public ArrayList<Person> getPeople() {
+	return people;
+}
+
+@Override
 public Box toCards() {
 	Box group = new Box(BoxLayout.PAGE_AXIS);
 	for (Family family : families) {
@@ -160,15 +165,6 @@ public Person find(String name) {
 	return null;
 }
 
-public void clear() {
-	for (Person person : people) {
-		if (!person.lockGive)
-			person.givingTo = null;
-		if (!person.lockReceive)
-			person.receivingFrom = null;
-	}
-}
-
 private class Family {
 
 	final String name;
@@ -198,7 +194,7 @@ private class Family {
 		ArrayList<JPanel> cards = new ArrayList<>();
 		cards.add(new FamilyHeader(name).panel);
 		for (Person person : people) {
-			cards.add(person.toCard());
+			cards.add(person.getCard().cards);
 		}
 		return cards;
 	}
