@@ -32,20 +32,25 @@ public static ArrayList<Group> read() {
 }
 
 public static void write() {
-	try {
-		FileWriter writer = new FileWriter(new File("data.json"));
-		JSONArray groups = new JSONArray();
-		for (Group group : ChristmasExchange.groups) {
-			groups.add(group.toJSON());
+	new Runnable() {
+		@Override
+		public void run() {
+			try {
+				FileWriter writer = new FileWriter(new File("data.json"));
+				JSONArray groups = new JSONArray();
+				for (Group group : ChristmasExchange.groups) {
+					groups.add(group.toJSON());
+				}
+				JSONObject object = new JSONObject();
+				object.put("groups", groups);
+				writer.write(object.toJSONString());
+				writer.close();
+			} catch (IOException e) {
+				ChristmasExchange.error("JSON file is currently in use. Please close any applications accessing the file and try again.");
+				e.printStackTrace();
+			}
 		}
-		JSONObject object = new JSONObject();
-		object.put("groups", groups);
-		writer.write(object.toJSONString());
-		writer.close();
-	} catch (IOException e) {
-		ChristmasExchange.error("JSON file is currently in use. Please close any applications accessing the file and try again.");
-		e.printStackTrace();
-	}
+	}.run();
 }
 
 }
