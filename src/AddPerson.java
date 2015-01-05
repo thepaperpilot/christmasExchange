@@ -10,7 +10,7 @@ private JPanel cards;
 private JPanel settings;
 private JTextField personName;
 private JButton create;
-private JSpinner numGroup;
+private JTextField group;
 private JButton cancel;
 private JLabel add;
 

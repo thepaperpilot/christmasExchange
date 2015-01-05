@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Person {
 public boolean participating;
 String name;
-int group;
+String group;
 String givingTo;
 String receivingFrom;
 boolean lockGive;
@@ -13,8 +13,8 @@ boolean lockReceive;
 private final PersonCard card;
 
 public Person(JSONObject person) {
-	name = person.get("name") == null ? "" : (String) person.get("name");
-	group = person.get("group") == null ? 0 : ((Long) person.get("group")).intValue();
+	name = person.get("name") == null ? "" : String.valueOf(person.get("name"));
+	group = person.get("group") == null ? "" : String.valueOf(person.get("group"));
 	givingTo = (String) person.get("giving");
 	receivingFrom = (String) person.get("receiving");
 	lockGive = person.get("lockGive") != null && (boolean) person.get("lockGive");
@@ -46,7 +46,7 @@ public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 	while (i < people.size()) {
 		Person person = people.get(i);
 		for (Rule rule : rules)
-			if (rule.source.contains(this) && !rule.checkRule(person)) {
+			if (rule.checkSource(this) && !rule.checkRule(person)) {
 				people.remove(person);
 				continue outer;
 			}

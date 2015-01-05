@@ -28,7 +28,7 @@ public FamilyGroup(JSONObject group) {
 	rules = new ArrayList<>();
 	if (group.get("rules") != null && !((JSONArray) group.get("rules")).isEmpty())
 		for (Object rule : (JSONArray) group.get("rules")) {
-			rules.add(new Rule((JSONObject) rule, people));
+			rules.add(new Rule((JSONObject) rule));
 		}
 }
 
@@ -50,10 +50,24 @@ public void setName(String name) {
 }
 
 @Override
-public Box toCards() {
+public ArrayList<Person> getPeople() {
+	return people;
+}
+
+@Override
+public Box peopleCards() {
 	Box group = new Box(BoxLayout.PAGE_AXIS);
 	for (Family family : families) {
 		group.add(family.toCards());
+	}
+	return group;
+}
+
+@Override
+public JPanel ruleCards() {
+	JPanel group = new JPanel(new WrapLayout(FlowLayout.LEFT));
+	for (Rule rule : rules) {
+		group.add(rule.getCard().card);
 	}
 	return group;
 }
@@ -105,7 +119,7 @@ public void randomize() {
 	for (Rule rule : rules) {
 		for (Family family : families) {
 			for (Person person : family.people) {
-				if (!rule.source.contains(person))
+				if (!rule.checkSource(person))
 					continue;
 				if (person.givingTo != null)
 					continue;
@@ -228,7 +242,7 @@ private class Family {
 			}
 		});
 		for (Person person : people) {
-			peopleCards.add(person.getCard().cards);
+			peopleCards.add(person.getCard().card);
 		}
 		card.add(peopleCards);
 		return card;
