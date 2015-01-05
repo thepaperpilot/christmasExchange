@@ -26,7 +26,8 @@ public static ArrayList<Group> read() {
 				// TODO add other group types
 			}
 		}
-	} catch (IOException | NullPointerException | ParseException ignored) {
+	} catch (IOException | NullPointerException | ParseException e) {
+		e.printStackTrace();
 	}
 	return groups;
 }

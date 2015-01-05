@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +6,17 @@ import java.awt.event.ActionListener;
 class PersonCard {
 public JTextArea giving;
 public JTextArea receiving;
-public JPanel cards;
+public JPanel card;
 private JTextArea name;
 private JButton lockGive;
 private JButton lockReceive;
 private JTextArea group;
 private JTextField personName;
 private JButton delete;
-private JButton rename;
+private JButton save;
 private JButton toPerson;
 private JButton toSettings;
-private JSpinner numGroup;
+private JTextField groupName;
 private JPanel people;
 private JPanel settings;
 private JCheckBox participating;
@@ -30,8 +28,8 @@ public PersonCard(final Person person) {
 	personName.setText(person.name);
 	giving.setText(person.givingTo);
 	receiving.setText(person.receivingFrom);
-	group.setText(person.group == 0 ? "No Group Selected" : "(Group " + String.valueOf(person.group) + ")");
-	numGroup.setValue(person.group);
+	group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
+	groupName.setText(person.group);
 	people.setBackground(person.participating ? Color.black : Color.red);
 	settings.setBackground(person.participating ? Color.black : Color.red);
 	participating.setSelected(person.participating);
@@ -70,29 +68,26 @@ public PersonCard(final Person person) {
 	toPerson.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			((CardLayout) cards.getLayout()).show(cards, "person");
+			((CardLayout) card.getLayout()).show(card, "person");
 		}
 	});
 	toSettings.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			((CardLayout) cards.getLayout()).show(cards, "settings");
+			((CardLayout) card.getLayout()).show(card, "settings");
 		}
 	});
-	numGroup.addChangeListener(new ChangeListener() {
-		@Override
-		public void stateChanged(ChangeEvent changeEvent) {
-			person.group = (int) numGroup.getValue();
-			Parser.write();
-			group.setText(person.group == 0 ? "No Group Selected" : "(Group " + String.valueOf(person.group) + ")");
-		}
-	});
-	rename.addActionListener(new ActionListener() {
+	save.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
 			person.name = personName.getText();
+			person.participating = participating.isSelected();
+			person.group = groupName.getText();
 			Parser.write();
 			name.setText(person.name);
+			people.setBackground(person.participating ? Color.black : Color.red);
+			settings.setBackground(person.participating ? Color.black : Color.red);
+			group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
 		}
 	});
 	delete.addActionListener(new ActionListener() {
@@ -100,16 +95,6 @@ public PersonCard(final Person person) {
 		public void actionPerformed(ActionEvent actionEvent) {
 			// TODO implement deleting people
 			Parser.write();
-		}
-	});
-	participating.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent actionEvent) {
-			person.participating = participating.isSelected();
-			Parser.write();
-			people.setBackground(person.participating ? Color.black : Color.red);
-			settings.setBackground(person.participating ? Color.black : Color.red);
-
 		}
 	});
 }

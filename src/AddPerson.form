@@ -50,7 +50,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="6321e" class="javax.swing.JSpinner" binding="numGroup">
+              <component id="241cd" class="javax.swing.JTextField" binding="group">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -61,7 +61,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Group #: "/>
+                  <text value="Group: "/>
                 </properties>
               </component>
             </children>

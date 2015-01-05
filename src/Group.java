@@ -1,6 +1,7 @@
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 interface Group {
 
@@ -8,7 +9,11 @@ public String getName();
 
 public void setName(String name);
 
-public Box toCards();
+public ArrayList<Person> getPeople();
+
+public Box peopleCards();
+
+public JPanel ruleCards();
 
 public JSONObject toJSON();
 

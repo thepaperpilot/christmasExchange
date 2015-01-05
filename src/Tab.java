@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 class Tab {
 private final Group group;
 public JPanel panel;
-private JScrollPane scrollpanePeople;
 private JPanel people;
 private JTextField groupName;
 private JButton delete;
@@ -15,12 +14,12 @@ private JPanel cards;
 private JButton rulesButton;
 private JButton settingsButton;
 private JButton peopleButton;
-private JScrollPane scrollpaneRules;
 private JButton rename;
 
 public Tab(final Group group) {
 	this.group = group;
-	people.add(group.toCards());
+	people.add(group.peopleCards());
+	rules.add(group.ruleCards());
 	panel.validate();
 	groupName.setText(group.getName());
 	peopleButton.setBackground(Color.lightGray);
