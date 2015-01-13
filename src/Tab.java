@@ -15,6 +15,7 @@ private JButton rulesButton;
 private JButton settingsButton;
 private JButton peopleButton;
 private JButton rename;
+private JButton GENERATEButton;
 
 public Tab(final Group group) {
 	this.group = group;
@@ -60,6 +61,14 @@ public Tab(final Group group) {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
 			ChristmasExchange.renameGroup(groupName.getText());
+		}
+	});
+
+
+	GENERATEButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ChristmasExchange.generate();
 		}
 	});
 }

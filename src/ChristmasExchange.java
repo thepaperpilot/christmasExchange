@@ -11,22 +11,7 @@ private static final ChristmasExchange instance = new ChristmasExchange();
 private static ArrayList<Tab> groupTabs = new ArrayList<>();
 private JTextArea error;
 private JPanel panel;
-private JButton GENERATEButton;
 private JTabbedPane tabs;
-
-private ChristmasExchange() {
-	GENERATEButton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			error.setText("");
-			if (groups.size() <= 0) {
-				error("Error: Invalid group selected");
-			} else {
-				getGroup().randomize();
-			}
-		}
-	});
-}
 
 public static void main(String[] args) {
 	JFrame frame = new JFrame("Christmas Exchange");
@@ -82,5 +67,14 @@ static void renameGroup(String name) {
 	getGroup().setName(name);
 	Parser.write();
 	instance.tabs.setTitleAt(instance.tabs.getSelectedIndex(), name);
+}
+
+public static void generate() {
+	ChristmasExchange.instance.error.setText("");
+	if (groups.size() <= 0) {
+		error("Error: Invalid group selected");
+	} else {
+		getGroup().randomize();
+	}
 }
 }
