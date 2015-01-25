@@ -44,7 +44,7 @@ public PersonCard(final Person person) {
 			person.lockGive = !person.lockGive;
 			Person partner = ChristmasExchange.getGroup().find(person.givingTo);
 			lockGive.setIcon(person.lockGive ? lock : unlock);
-			if (partner != null) {
+			if(partner != null) {
 				partner.lockReceive = person.lockGive;
 				partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
 			}
@@ -58,7 +58,7 @@ public PersonCard(final Person person) {
 			person.lockReceive = !person.lockReceive;
 			Person partner = ChristmasExchange.getGroup().find(person.receivingFrom);
 			lockReceive.setIcon(person.lockReceive ? lock : unlock);
-			if (partner != null) {
+			if(partner != null) {
 				partner.lockGive = person.lockReceive;
 				partner.getCard().lockGive.setIcon(partner.lockGive ? lock : unlock);
 			}

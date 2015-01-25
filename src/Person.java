@@ -3,6 +3,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 class Person {
+private final PersonCard card;
 public boolean participating;
 String name;
 String group;
@@ -10,7 +11,6 @@ String givingTo;
 String receivingFrom;
 boolean lockGive;
 boolean lockReceive;
-private final PersonCard card;
 
 public Person(JSONObject person) {
 	name = person.get("name") == null ? "" : String.valueOf(person.get("name"));
@@ -43,10 +43,10 @@ public String toCSV() {
 public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 	int i = 0;
 	outer:
-	while (i < people.size()) {
+	while(i < people.size()) {
 		Person person = people.get(i);
-		for (Rule rule : rules)
-			if (rule.checkSource(this) && !rule.checkRule(person)) {
+		for(Rule rule : rules)
+			if(rule.checkSource(this) && !rule.checkRule(person)) {
 				people.remove(person);
 				continue outer;
 			}

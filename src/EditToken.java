@@ -4,7 +4,8 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public abstract class AddToken extends JDialog {
+class EditToken extends JDialog {
+private final Token token;
 private JPanel contentPane;
 private JButton buttonOK;
 private JButton buttonCancel;
@@ -15,12 +16,20 @@ private JPanel preview;
 private JCheckBox matchCase;
 private JCheckBox useRegEx;
 private JCheckBox invert;
+private JButton buttonDelete;
 
-public AddToken(String title) {
+public EditToken(final Token token) {
+	this.token = token;
 	setContentPane(contentPane);
 	setModal(true);
 	getRootPane().setDefaultButton(buttonOK);
-	setTitle(title);
+	setTitle("Editing Token");
+	checkNames.setSelected(token.isCheckNames());
+	checkGroups.setSelected(token.isCheckGroups());
+	matchCase.setSelected(token.isMatchCase());
+	useRegEx.setSelected(token.isUseRegex());
+	invert.setSelected(token.isInvert());
+	name.setText(token.getToken());
 
 	buttonOK.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -32,6 +41,14 @@ public AddToken(String title) {
 	buttonCancel.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			onCancel();
+		}
+	});
+
+	buttonDelete.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			token.deleteToken();
+			dispose();
 		}
 	});
 
@@ -95,7 +112,9 @@ public AddToken(String title) {
 	});
 }
 
-public abstract void onOK();
+void onOK() {
+	token.setToken(getToken());
+}
 
 private void onCancel() {
 	dispose();
@@ -110,7 +129,7 @@ private void createUIComponents() {
 
 private void updatePreview() {
 	preview.removeAll();
-	Token token = new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected());
+	Token token = new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), this.token.parent);
 	for(Person person : ChristmasExchange.getGroup().getPeople()) {
 		if(token.check(person))
 			preview.add(person.getCard().card);
@@ -119,8 +138,8 @@ private void updatePreview() {
 	preview.updateUI();
 }
 
-public Token getToken() {
-	return new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected());
+Token getToken() {
+	return new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), token.parent);
 }
 
 public void create() {

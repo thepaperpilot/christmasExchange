@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 class ChristmasExchange {
@@ -28,7 +26,7 @@ public static void main(String[] args) {
 private static void populateTabs() {
 	groupTabs = new ArrayList<>();
 	instance.tabs.removeAll();
-	for (int i = 0; i < groups.size(); i++) {
+	for(int i = 0; i < groups.size(); i++) {
 		Group group = groups.get(i);
 		Tab tab = new Tab(group);
 		instance.tabs.add(tab.panel);
@@ -71,7 +69,7 @@ static void renameGroup(String name) {
 
 public static void generate() {
 	ChristmasExchange.instance.error.setText("");
-	if (groups.size() <= 0) {
+	if(groups.size() <= 0) {
 		error("Error: Invalid group selected");
 	} else {
 		getGroup().randomize();

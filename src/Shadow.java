@@ -17,7 +17,7 @@ public Shadow() {
 @Override
 protected void paintComponent(Graphics g) {
 	int topOpacity = 80;
-	for (int i = 0; i < pixels; i++) {
+	for(int i = 0; i < pixels; i++) {
 		g.setColor(new Color(getBackground().getRed(), getBackground().getGreen(), getBackground().getBlue(), ((topOpacity / pixels) * i)));
 		g.drawRect(i, i, this.getWidth() - ((i * 2) + 1), this.getHeight() - ((i * 2) + 1));
 	}

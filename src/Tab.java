@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class Tab {
-private final Group group;
 public JPanel panel;
 private JPanel people;
 private JTextField groupName;
@@ -18,7 +17,6 @@ private JButton rename;
 private JButton GENERATEButton;
 
 public Tab(final Group group) {
-	this.group = group;
 	people.add(group.peopleCards());
 	rules.add(group.ruleCards());
 	panel.validate();

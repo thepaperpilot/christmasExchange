@@ -2,18 +2,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 class Rule {
+public final RuleCard card;
 private final ArrayList<Token> sources;
 private final ArrayList<Token> whitelist;
 private final ArrayList<Token> blacklist;
-private final JSONObject jsonObject;
-private final RuleCard card;
 
 public Rule(JSONObject rule) {
-	jsonObject = rule;
 	sources = find((JSONArray) rule.get("source"));
 	whitelist = find((JSONArray) rule.get("whitelist"));
 	blacklist = find((JSONArray) rule.get("blacklist"));
@@ -26,7 +23,7 @@ private ArrayList<Token> find(JSONArray JSONtokens) {
 	if(JSONtokens == null)
 		return tokens;
 	for(Object object : JSONtokens) {
-		tokens.add(new Token((JSONObject) object));
+		tokens.add(new Token((JSONObject) object, this));
 	}
 	return tokens;
 }
@@ -99,18 +96,25 @@ public JPanel getWhitesCard() {
 	return panel;
 }
 
-public void addSource(Token token) {
-	sources.add(token);
+public void addSource() {
+	sources.add(new Token(this));
 	Parser.write();
 }
 
-public void addWhite(Token token) {
-	whitelist.add(token);
+public void addWhite() {
+	whitelist.add(new Token(this));
 	Parser.write();
 }
 
-public void addBlack(Token token) {
-	blacklist.add(token);
+public void addBlack() {
+	blacklist.add(new Token(this));
+	Parser.write();
+}
+
+public void remove(Token token) {
+	sources.remove(token);
+	whitelist.remove(token);
+	blacklist.remove(token);
 	Parser.write();
 }
 }

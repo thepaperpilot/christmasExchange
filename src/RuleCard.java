@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class RuleCard {
+private final Rule parent;
 public JPanel card;
 private JButton addBlack;
 private JButton addWhite;
@@ -12,51 +13,49 @@ private JPanel whites;
 private JPanel blacks;
 
 public RuleCard(final Rule rule) {
+	parent = rule;
 	sources.add(rule.getSourcesCard());
 	blacks.add(rule.getBlacksCard());
 	whites.add(rule.getWhitesCard());
 	addSource.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			new AddToken("Adding to Source") {
-				@Override
-				public void onOK() {
-					rule.addSource(getToken());
-					whites.remove(1);
-					sources.add(rule.getSourcesCard());
-					sources.revalidate();
-				}
-			}.create();
+			rule.addSource();
+			sources.remove(1);
+			sources.add(rule.getSourcesCard());
+			sources.revalidate();
 		}
 	});
 	addWhite.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			new AddToken("Adding to Whitelist") {
-				@Override
-				public void onOK() {
-					rule.addWhite(getToken());
-					whites.remove(1);
-					whites.add(rule.getWhitesCard());
-					whites.revalidate();
-				}
-			}.create();
+			rule.addWhite();
+			whites.remove(1);
+			whites.add(rule.getWhitesCard());
+			whites.revalidate();
 		}
 	});
 	addBlack.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			new AddToken("Adding to Blacklist") {
-				@Override
-				public void onOK() {
-					rule.addBlack(getToken());
-					whites.remove(1);
-					blacks.add(rule.getBlacksCard());
-					blacks.revalidate();
-				}
-			}.create();
+			rule.addBlack();
+			blacks.remove(1);
+			blacks.add(rule.getBlacksCard());
+			blacks.revalidate();
 		}
 	});
+}
+
+public void update() {
+	sources.remove(1);
+	sources.add(parent.getSourcesCard());
+	sources.revalidate();
+	whites.remove(1);
+	whites.add(parent.getWhitesCard());
+	whites.revalidate();
+	blacks.remove(1);
+	blacks.add(parent.getBlacksCard());
+	blacks.revalidate();
 }
 
 private void createUIComponents() {

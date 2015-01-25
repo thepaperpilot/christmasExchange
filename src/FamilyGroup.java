@@ -19,15 +19,15 @@ public FamilyGroup(JSONObject group) {
 	name = group.get("name") == null ? "" : (String) group.get("name");
 	families = new ArrayList<>();
 	people = new ArrayList<>();
-	if (group.get("families") != null && !((JSONArray) group.get("families")).isEmpty())
-		for (Object family : (JSONArray) group.get("families")) {
+	if(group.get("families") != null && !((JSONArray) group.get("families")).isEmpty())
+		for(Object family : (JSONArray) group.get("families")) {
 			Family fam = new Family((JSONObject) family);
 			families.add(fam);
 			people.addAll(fam.people);
 		}
 	rules = new ArrayList<>();
-	if (group.get("rules") != null && !((JSONArray) group.get("rules")).isEmpty())
-		for (Object rule : (JSONArray) group.get("rules")) {
+	if(group.get("rules") != null && !((JSONArray) group.get("rules")).isEmpty())
+		for(Object rule : (JSONArray) group.get("rules")) {
 			rules.add(new Rule((JSONObject) rule));
 		}
 }
@@ -57,7 +57,7 @@ public ArrayList<Person> getPeople() {
 @Override
 public Box peopleCards() {
 	Box group = new Box(BoxLayout.PAGE_AXIS);
-	for (Family family : families) {
+	for(Family family : families) {
 		group.add(family.toCards());
 	}
 	return group;
@@ -66,7 +66,7 @@ public Box peopleCards() {
 @Override
 public JPanel ruleCards() {
 	JPanel group = new JPanel(new WrapLayout(FlowLayout.LEFT));
-	for (Rule rule : rules) {
+	for(Rule rule : rules) {
 		group.add(rule.getCard().card);
 	}
 	return group;
@@ -78,12 +78,12 @@ public JSONObject toJSON() {
 	group.put("type", "family");
 	group.put("name", name);
 	JSONArray families = new JSONArray();
-	for (Family family : this.families) {
+	for(Family family : this.families) {
 		families.add(family.toJSON());
 	}
 	group.put("families", families);
 	JSONArray rules = new JSONArray();
-	for (Rule rule : this.rules) {
+	for(Rule rule : this.rules) {
 		rules.add(rule.toJSON());
 	}
 	group.put("rules", rules);
@@ -94,7 +94,7 @@ public JSONObject toJSON() {
 public String toCSV() {
 	String csv = "";
 	csv += name + "\n";
-	for (Family family : families) {
+	for(Family family : families) {
 		csv += family.toCSV();
 	}
 	csv += "\n\n";
@@ -106,31 +106,31 @@ public void randomize() {
 	Random r = new Random();
 	int nulls = 0;
 	ArrayList<Person> available = new ArrayList<>(people);
-	for (Person person : people) {
-		if (!person.participating || person.lockReceive)
+	for(Person person : people) {
+		if(!person.participating || person.lockReceive)
 			available.remove(person);
-		if (!person.lockGive) {
+		if(!person.lockGive) {
 			person.givingTo = null;
 		}
-		if (!person.lockReceive) {
+		if(!person.lockReceive) {
 			person.receivingFrom = null;
 		}
 	}
-	for (Rule rule : rules) {
-		for (Family family : families) {
-			for (Person person : family.people) {
-				if (!rule.checkSource(person))
+	for(Rule rule : rules) {
+		for(Family family : families) {
+			for(Person person : family.people) {
+				if(!rule.checkSource(person))
 					continue;
-				if (person.givingTo != null)
+				if(person.givingTo != null)
 					continue;
-				if (!person.participating)
+				if(!person.participating)
 					continue;
 				ArrayList<Person> specificAvailable = new ArrayList<>(available);
 				specificAvailable.removeAll(family.people);
 				person.applyRules(specificAvailable, rules);
-				if (specificAvailable.size() != 1)
+				if(specificAvailable.size() != 1)
 					specificAvailable.remove(find(person.receivingFrom));
-				if (specificAvailable.size() <= 0)
+				if(specificAvailable.size() <= 0)
 					continue;
 				Person partner = specificAvailable.get(specificAvailable.size() == 1 ? 0 : r.nextInt(specificAvailable.size()));
 				person.givingTo = partner.name;
@@ -139,24 +139,24 @@ public void randomize() {
 			}
 		}
 	}
-	for (Person person : people) {
-		if (person.givingTo != null)
+	for(Person person : people) {
+		if(person.givingTo != null)
 			continue;
-		if (!person.participating)
+		if(!person.participating)
 			continue;
-		if (available.size() <= 0 || (available.size() == 1 && available.contains(person))) {
+		if(available.size() <= 0 || (available.size() == 1 && available.contains(person))) {
 			nulls++;
 			continue;
 		}
 		// Temporarily remove the person, so we don't choose them to give to (only rule at this point)
 		boolean removed = available.remove(person);
 		Person partner = available.get(available.size() == 1 ? 0 : r.nextInt(available.size()));
-		if (removed) available.add(person);
+		if(removed) available.add(person);
 		person.givingTo = partner.name;
 		partner.receivingFrom = person.name;
 		available.remove(partner);
 	}
-	if (nulls > 0) {
+	if(nulls > 0) {
 		ChristmasExchange.error(nulls + (nulls == 1 ? " person wasn't" : " people weren't") + " able to be sorted.");
 	}
 
@@ -168,7 +168,7 @@ public void randomize() {
 	new Thread(new Runnable() {
 		@Override
 		public void run() {
-			for (Person person : people) {
+			for(Person person : people) {
 				person.getCard().giving.setText(person.givingTo);
 				person.getCard().receiving.setText(person.receivingFrom);
 			}
@@ -181,8 +181,8 @@ public void randomize() {
 @Override
 public Person find(String name) {
 	// TODO switch to UIDs
-	for (Person person : people) {
-		if (person.name.equals(name)) {
+	for(Person person : people) {
+		if(person.name.equals(name)) {
 			return person;
 		}
 	}
@@ -197,8 +197,8 @@ private class Family {
 	public Family(JSONObject family) {
 		name = family.get("name") == null ? "" : (String) family.get("name");
 		people = new ArrayList<>();
-		if (family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
-			for (Object person : (JSONArray) family.get("people")) {
+		if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
+			for(Object person : (JSONArray) family.get("people")) {
 				people.add(new Person((JSONObject) person));
 			}
 	}
@@ -207,7 +207,7 @@ private class Family {
 		JSONObject family = new JSONObject();
 		family.put("name", name);
 		JSONArray people = new JSONArray();
-		for (Person person : this.people) {
+		for(Person person : this.people) {
 			people.add(person.toJSON());
 		}
 		family.put("people", people);
@@ -241,7 +241,7 @@ private class Family {
 
 			}
 		});
-		for (Person person : people) {
+		for(Person person : people) {
 			peopleCards.add(person.getCard().card);
 		}
 		card.add(peopleCards);
@@ -251,7 +251,7 @@ private class Family {
 	public String toCSV() {
 		String csv = "";
 		csv += name + "\n";
-		for (Person person : people) {
+		for(Person person : people) {
 			csv += "," + person.toCSV();
 		}
 		csv += "\n";

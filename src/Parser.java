@@ -16,8 +16,8 @@ public static ArrayList<Group> read() {
 	try {
 		JSONParser parser = new JSONParser();
 		JSONObject object = (JSONObject) parser.parse(new FileReader("data.json"));
-		for (Object group : (JSONArray) object.get("groups")) {
-			switch ((String) ((JSONObject) group).get("type")) {
+		for(Object group : (JSONArray) object.get("groups")) {
+			switch((String) ((JSONObject) group).get("type")) {
 				default:
 					break;
 				case "family":
@@ -26,7 +26,7 @@ public static ArrayList<Group> read() {
 				// TODO add other group types
 			}
 		}
-	} catch (IOException | NullPointerException | ParseException e) {
+	} catch(IOException | NullPointerException | ParseException e) {
 		e.printStackTrace();
 	}
 	return groups;
@@ -39,14 +39,14 @@ public static void write() {
 			try {
 				FileWriter writer = new FileWriter(new File("data.json"));
 				JSONArray groups = new JSONArray();
-				for (Group group : ChristmasExchange.groups) {
+				for(Group group : ChristmasExchange.groups) {
 					groups.add(group.toJSON());
 				}
 				JSONObject object = new JSONObject();
 				object.put("groups", groups);
 				writer.write(object.toJSONString());
 				writer.close();
-			} catch (IOException e) {
+			} catch(IOException e) {
 				ChristmasExchange.error("JSON file is currently in use. Please close any applications accessing the file and try again.");
 				e.printStackTrace();
 			}

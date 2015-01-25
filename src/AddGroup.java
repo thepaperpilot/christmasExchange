@@ -12,7 +12,7 @@ public AddGroup() {
 	submit.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			switch (type.getSelectedIndex()) {
+			switch(type.getSelectedIndex()) {
 				default:
 					// invalid group #
 					break;
