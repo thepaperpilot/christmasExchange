@@ -51,7 +51,7 @@ public EditToken(final Token token) {
 				@Override
 				public void onOK() {
 					token.deleteToken();
-					dispose();
+					EditToken.this.dispose();
 				}
 
 			}.create();
