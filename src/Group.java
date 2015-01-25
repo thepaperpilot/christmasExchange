@@ -22,4 +22,6 @@ public String toCSV();
 public void randomize();
 
 Person find(String name);
+
+void removeRule(Rule rule);
 }

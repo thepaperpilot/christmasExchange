@@ -14,6 +14,7 @@ private final ArrayList<Family> families;
 private final ArrayList<Person> people;
 private final ArrayList<Rule> rules;
 private String name;
+private JPanel ruleCards;
 
 public FamilyGroup(JSONObject group) {
 	name = group.get("name") == null ? "" : (String) group.get("name");
@@ -65,11 +66,11 @@ public Box peopleCards() {
 
 @Override
 public JPanel ruleCards() {
-	JPanel group = new JPanel(new WrapLayout(FlowLayout.LEFT));
+	ruleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
 	for(Rule rule : rules) {
-		group.add(rule.getCard().card);
+		ruleCards.add(rule.getCard().card);
 	}
-	return group;
+	return ruleCards;
 }
 
 @Override
@@ -187,6 +188,14 @@ public Person find(String name) {
 		}
 	}
 	return null;
+}
+
+@Override
+public void removeRule(Rule rule) {
+	rules.remove(rule);
+	Parser.write();
+
+	ruleCards.remove(rule.getCard().card);
 }
 
 private class Family {

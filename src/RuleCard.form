@@ -47,17 +47,15 @@
           </grid>
         </children>
       </grid>
-      <component id="4cf77" class="javax.swing.JButton" default-binding="true">
+      <component id="4cf77" class="javax.swing.JButton" binding="deleteButton">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-1"/>
-          <borderPainted value="false"/>
           <focusPainted value="false"/>
-          <icon value="dots.png"/>
           <opaque value="true"/>
-          <text value=""/>
+          <text value="Delete"/>
         </properties>
       </component>
       <grid id="435f3" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

@@ -93,8 +93,13 @@ public PersonCard(final Person person) {
 	delete.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			// TODO implement deleting people
-			Parser.write();
+			new ConfirmDialog() {
+				@Override
+				public void onOK() {
+					// TODO implement deleting people
+					Parser.write();
+				}
+			}.create();
 		}
 	});
 }

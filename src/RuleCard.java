@@ -11,6 +11,7 @@ private JButton addSource;
 private JPanel sources;
 private JPanel whites;
 private JPanel blacks;
+private JButton deleteButton;
 
 public RuleCard(final Rule rule) {
 	parent = rule;
@@ -42,6 +43,17 @@ public RuleCard(final Rule rule) {
 			blacks.remove(1);
 			blacks.add(rule.getBlacksCard());
 			blacks.revalidate();
+		}
+	});
+	deleteButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			new ConfirmDialog() {
+				@Override
+				public void onOK() {
+					ChristmasExchange.getGroup().removeRule(rule);
+				}
+			}.create();
 		}
 	});
 }

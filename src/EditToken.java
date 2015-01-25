@@ -47,8 +47,14 @@ public EditToken(final Token token) {
 	buttonDelete.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			token.deleteToken();
-			dispose();
+			new ConfirmDialog() {
+				@Override
+				public void onOK() {
+					token.deleteToken();
+					dispose();
+				}
+
+			}.create();
 		}
 	});
 
@@ -110,6 +116,8 @@ public EditToken(final Token token) {
 			updatePreview();
 		}
 	});
+
+	updatePreview();
 }
 
 void onOK() {
@@ -145,6 +153,7 @@ Token getToken() {
 public void create() {
 	pack();
 	setMinimumSize(new Dimension(600, 400));
+	setSize(new Dimension(600, 400));
 	setVisible(true);
 }
 }
