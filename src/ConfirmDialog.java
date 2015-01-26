@@ -1,54 +1,54 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public abstract class ConfirmDialog extends JDialog {
-private JPanel contentPane;
-private JButton buttonOK;
-private JButton buttonCancel;
+abstract class ConfirmDialog extends JDialog {
+    private JPanel contentPane;
+    private JButton buttonOK;
+    private JButton buttonCancel;
 
-public ConfirmDialog() {
-	setContentPane(contentPane);
-	setModal(true);
-	getRootPane().setDefaultButton(buttonCancel);
+    public ConfirmDialog() {
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(buttonCancel);
 
-	buttonOK.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			onOK();
-			dispose();
-		}
-	});
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+                dispose();
+            }
+        });
 
-	buttonCancel.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			onCancel();
-		}
-	});
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
 
 // call onCancel() when cross is clicked
-	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-	addWindowListener(new WindowAdapter() {
-		public void windowClosing(WindowEvent e) {
-			onCancel();
-		}
-	});
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
 
 // call onCancel() on ESCAPE
-	contentPane.registerKeyboardAction(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			onCancel();
-		}
-	}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-}
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
 
-public abstract void onOK();
+    public abstract void onOK();
 
-private void onCancel() {
+    private void onCancel() {
 // add your code here if necessary
-	dispose();
-}
+        dispose();
+    }
 
-public void create() {
-	pack();
-	setVisible(true);
-}
+    public void create() {
+        pack();
+        setVisible(true);
+    }
 }

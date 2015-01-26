@@ -67,7 +67,8 @@ public Box peopleCards() {
 @Override
 public JPanel ruleCards() {
 	ruleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
-	for(Rule rule : rules) {
+    ruleCards.setBackground(Color.white);
+    for(Rule rule : rules) {
 		ruleCards.add(rule.getCard().card);
 	}
 	return ruleCards;
@@ -227,8 +228,10 @@ private class Family {
 		final JPanel card = new JPanel();
 		card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
 		card.add(new FamilyHeader(name).panel);
-		JPanel peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
-		peopleCards.setSize(1, 1);
+        card.setBackground(Color.white);
+        JPanel peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
+        peopleCards.setBackground(Color.white);
+        peopleCards.setSize(1, 1);
 		peopleCards.addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent componentEvent) {

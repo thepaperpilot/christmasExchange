@@ -7,6 +7,7 @@
     </constraints>
     <properties>
       <background color="-16777216"/>
+      <opaque value="false"/>
     </properties>
     <border type="none"/>
     <children>
@@ -21,14 +22,18 @@
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <grid id="662b8" binding="sources" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <opaque value="false"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="20198" class="javax.swing.JButton" binding="addSource">
@@ -39,7 +44,7 @@
                   <focusPainted value="false"/>
                   <horizontalAlignment value="4"/>
                   <icon value="plus.png"/>
-                  <opaque value="true"/>
+                  <opaque value="false"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -63,7 +68,9 @@
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="6bd09" class="javax.swing.JLabel" default-binding="true">
@@ -90,6 +97,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="all"/>
             </properties>
           </component>
@@ -99,6 +107,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="any"/>
             </properties>
           </component>
@@ -115,7 +124,9 @@
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="abc81" class="javax.swing.JLabel" default-binding="true">
@@ -142,6 +153,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="any"/>
             </properties>
           </component>
@@ -151,6 +163,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="all"/>
             </properties>
           </component>
@@ -160,7 +173,9 @@
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="b61a3" class="javax.swing.JButton" binding="addWhite">
@@ -171,7 +186,7 @@
               <focusPainted value="false"/>
               <horizontalAlignment value="4"/>
               <icon value="plus.png"/>
-              <opaque value="true"/>
+              <opaque value="false"/>
               <text value=""/>
             </properties>
           </component>
@@ -190,7 +205,9 @@
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="a6eb0" class="javax.swing.JButton" binding="addBlack">
@@ -201,7 +218,7 @@
               <focusPainted value="false"/>
               <horizontalAlignment value="4"/>
               <icon value="plus.png"/>
-              <opaque value="true"/>
+              <opaque value="false"/>
               <text value=""/>
             </properties>
           </component>

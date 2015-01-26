@@ -6,7 +6,7 @@
       <xy x="48" y="54" width="579" height="422"/>
     </constraints>
     <properties>
-      <opaque value="true"/>
+      <background color="-1"/>
     </properties>
     <border type="none"/>
     <children>
@@ -15,7 +15,9 @@
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <opaque value="false"/>
+        </properties>
         <border type="none"/>
         <children>
           <hspacer id="98af6">
@@ -29,6 +31,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <opaque value="false"/>
               <text value="Delete"/>
             </properties>
           </component>
@@ -38,6 +41,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <opaque value="false"/>
               <text value="Save"/>
             </properties>
           </component>
@@ -47,6 +51,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <opaque value="false"/>
               <text value="Cancel"/>
             </properties>
           </component>
@@ -84,6 +89,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <selected value="true"/>
               <text value="Check Names"/>
             </properties>
@@ -94,6 +100,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="Check Groups"/>
             </properties>
           </component>
@@ -103,6 +110,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="Match Case"/>
             </properties>
           </component>
@@ -112,6 +120,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="Use RegEx"/>
             </properties>
           </component>
@@ -121,6 +130,7 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="Invert"/>
             </properties>
           </component>
@@ -140,7 +150,7 @@
           <grid id="78135" binding="preview" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
             <properties>
-              <opaque value="false"/>
+              <background color="-1"/>
             </properties>
             <border type="none"/>
             <children/>
