@@ -24,11 +24,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <borderPainted value="false"/>
-              <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
-              <focusable value="true"/>
               <icon value="dots.png"/>
               <opaque value="false"/>
               <text value=""/>
@@ -39,8 +35,6 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <focusable value="true"/>
               <font size="12" style="1"/>
               <text value="Giving to: "/>
             </properties>
@@ -50,8 +44,6 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <focusable value="true"/>
               <font size="12" style="1"/>
               <text value="Receiving from: "/>
             </properties>
@@ -61,13 +53,8 @@
               <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <borderPainted value="false"/>
-              <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
-              <focusable value="true"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
           <component id="a7938" class="javax.swing.JButton" binding="lockReceive">
@@ -75,13 +62,8 @@
               <grid row="4" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <borderPainted value="false"/>
-              <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
-              <focusable value="true"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
           <component id="e2a39" class="javax.swing.JTextArea" binding="giving">
@@ -89,12 +71,9 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
               <editable value="false"/>
-              <focusable value="true"/>
               <font size="12"/>
               <opaque value="false"/>
-              <text value="Label"/>
             </properties>
           </component>
           <component id="84c99" class="javax.swing.JTextArea" binding="receiving">
@@ -102,12 +81,9 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
               <editable value="false"/>
-              <focusable value="true"/>
               <font size="12"/>
               <opaque value="false"/>
-              <text value="Label"/>
             </properties>
           </component>
           <component id="de4ec" class="javax.swing.JTextArea" binding="group">
@@ -115,11 +91,9 @@
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="7" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
               <editable value="false"/>
               <font size="12"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
           <component id="4ea17" class="javax.swing.JTextArea" binding="name">
@@ -127,7 +101,6 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
               <editable value="false"/>
               <font size="16" style="1"/>
               <opaque value="false"/>
@@ -153,7 +126,9 @@
           </vspacer>
           <component id="e46bd" class="javax.swing.JTextField" binding="personName" custom-create="true">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="24"/>
+              </grid>
             </constraints>
             <properties>
               <horizontalAlignment value="0"/>
@@ -166,8 +141,8 @@
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
+              <opaque value="false"/>
               <text value="Delete Person"/>
             </properties>
           </component>
@@ -182,11 +157,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <borderPainted value="false"/>
-              <contentAreaFilled value="true"/>
               <focusPainted value="false"/>
-              <focusable value="true"/>
               <icon value="dots.png"/>
               <opaque value="false"/>
               <text value=""/>
@@ -209,7 +180,10 @@
             <children>
               <component id="854e9" class="javax.swing.JTextField" binding="groupName">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="24"/>
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
                 </constraints>
                 <properties>
                   <opaque value="false"/>
@@ -233,7 +207,6 @@
               <focusPainted value="false"/>
               <horizontalTextPosition value="10"/>
               <opaque value="false"/>
-              <selected value="true"/>
               <text value="Participating?"/>
             </properties>
           </component>
@@ -242,7 +215,6 @@
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
               <label value="Save"/>
               <text value="Save"/>

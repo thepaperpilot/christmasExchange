@@ -6,7 +6,7 @@
       <xy x="48" y="54" width="579" height="422"/>
     </constraints>
     <properties>
-      <background color="-1"/>
+      <opaque value="false"/>
     </properties>
     <border type="none"/>
     <children>
@@ -30,8 +30,6 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <opaque value="false"/>
               <text value="Delete"/>
             </properties>
           </component>
@@ -40,8 +38,6 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <opaque value="false"/>
               <text value="Save"/>
             </properties>
           </component>
@@ -50,8 +46,6 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-1"/>
-              <opaque value="false"/>
               <text value="Cancel"/>
             </properties>
           </component>
@@ -69,12 +63,14 @@
         <children>
           <component id="1214" class="javax.swing.JTextField" binding="name" custom-create="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="24"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
             </constraints>
             <properties>
               <horizontalAlignment value="0"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
           <component id="54e32" class="javax.swing.JSeparator">
@@ -89,8 +85,6 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <opaque value="false"/>
-              <selected value="true"/>
               <text value="Check Names"/>
             </properties>
           </component>
@@ -100,7 +94,6 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <opaque value="false"/>
               <text value="Check Groups"/>
             </properties>
           </component>
@@ -110,7 +103,6 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <opaque value="false"/>
               <text value="Match Case"/>
             </properties>
           </component>
@@ -120,7 +112,6 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <opaque value="false"/>
               <text value="Use RegEx"/>
             </properties>
           </component>
@@ -130,7 +121,6 @@
             </constraints>
             <properties>
               <focusPainted value="false"/>
-              <opaque value="false"/>
               <text value="Invert"/>
             </properties>
           </component>
@@ -150,7 +140,7 @@
           <grid id="78135" binding="preview" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
             <properties>
-              <background color="-1"/>
+              <opaque value="false"/>
             </properties>
             <border type="none"/>
             <children/>

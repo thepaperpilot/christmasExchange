@@ -26,27 +26,27 @@ class Tab {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ((CardLayout) cards.getLayout()).show(cards, "people");
-                peopleButton.setBackground(Color.lightGray);
-                rulesButton.setBackground(Color.white);
-                settingsButton.setBackground(Color.white);
+                peopleButton.setSelected(true);
+                rulesButton.setSelected(false);
+                settingsButton.setSelected(false);
             }
         });
         rulesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ((CardLayout) cards.getLayout()).show(cards, "rules");
-                peopleButton.setBackground(Color.white);
-                rulesButton.setBackground(Color.lightGray);
-                settingsButton.setBackground(Color.white);
+                peopleButton.setSelected(false);
+                rulesButton.setSelected(true);
+                settingsButton.setSelected(false);
             }
         });
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ((CardLayout) cards.getLayout()).show(cards, "settings");
-                peopleButton.setBackground(Color.white);
-                rulesButton.setBackground(Color.white);
-                settingsButton.setBackground(Color.lightGray);
+                peopleButton.setSelected(false);
+                rulesButton.setSelected(false);
+                settingsButton.setSelected(true);
             }
         });
         delete.addActionListener(new ActionListener() {

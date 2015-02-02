@@ -29,7 +29,7 @@
         <children>
           <grid id="662b8" binding="sources" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <opaque value="false"/>
@@ -39,13 +39,12 @@
               <component id="20198" class="javax.swing.JButton" binding="addSource">
                 <constraints border-constraint="South"/>
                 <properties>
-                  <background color="-1"/>
                   <borderPainted value="false"/>
+                  <contentAreaFilled value="false"/>
                   <focusPainted value="false"/>
                   <horizontalAlignment value="4"/>
                   <icon value="plus.png"/>
                   <opaque value="false"/>
-                  <text value=""/>
                 </properties>
               </component>
             </children>
@@ -57,9 +56,8 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-1"/>
           <focusPainted value="false"/>
-          <opaque value="true"/>
+          <opaque value="false"/>
           <text value="Delete"/>
         </properties>
       </component>
@@ -78,7 +76,6 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="12" style="1"/>
               <text value="People who match ("/>
             </properties>
           </component>
@@ -87,7 +84,6 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="12" style="1"/>
               <text value=") of these:"/>
             </properties>
           </component>
@@ -96,7 +92,6 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <focusPainted value="false"/>
               <opaque value="false"/>
               <text value="all"/>
             </properties>
@@ -134,7 +129,6 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="12" style="1"/>
               <text value=") of these:"/>
             </properties>
           </component>
@@ -143,7 +137,6 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font size="12" style="1"/>
               <text value="must match ("/>
             </properties>
           </component>
@@ -152,7 +145,6 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <focusPainted value="false"/>
               <opaque value="false"/>
               <text value="any"/>
             </properties>
@@ -171,7 +163,7 @@
       </grid>
       <grid id="e5a31" binding="whites" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <opaque value="false"/>
@@ -181,13 +173,12 @@
           <component id="b61a3" class="javax.swing.JButton" binding="addWhite">
             <constraints border-constraint="South"/>
             <properties>
-              <background color="-1"/>
               <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
               <horizontalAlignment value="4"/>
               <icon value="plus.png"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
         </children>
@@ -197,13 +188,12 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font size="12" style="1"/>
           <text value="and none of these:"/>
         </properties>
       </component>
       <grid id="170dc" binding="blacks" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <opaque value="false"/>
@@ -213,13 +203,12 @@
           <component id="a6eb0" class="javax.swing.JButton" binding="addBlack">
             <constraints border-constraint="South"/>
             <properties>
-              <background color="-1"/>
               <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
               <horizontalAlignment value="4"/>
               <icon value="plus.png"/>
               <opaque value="false"/>
-              <text value=""/>
             </properties>
           </component>
         </children>

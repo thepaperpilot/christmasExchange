@@ -6,30 +6,30 @@
       <xy x="20" y="20" width="538" height="387"/>
     </constraints>
     <properties>
-      <background color="-1"/>
-      <visible value="true"/>
+      <opaque value="false"/>
     </properties>
     <border type="none"/>
     <children>
       <component id="58b41" class="javax.swing.JTextArea" binding="error">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="1" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
         </constraints>
         <properties>
-          <background color="-1"/>
           <editable value="false"/>
           <font size="16" style="1"/>
           <foreground color="-65536"/>
+          <opaque value="false"/>
         </properties>
       </component>
       <tabbedpane id="5c79e" binding="tabs">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
         </constraints>
-        <properties>
-          <background color="-1"/>
-          <visible value="true"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children/>
       </tabbedpane>
