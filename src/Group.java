@@ -5,23 +5,23 @@ import java.util.ArrayList;
 
 interface Group {
 
-    public String getName();
+public String getName();
 
-    public void setName(String name);
+public void setName(String name);
 
-    public ArrayList<Person> getPeople();
+public ArrayList<Person> getPeople();
 
-    public Box peopleCards();
+public Box peopleCards();
 
-    public JPanel ruleCards();
+public JPanel ruleCards();
 
-    public JSONObject toJSON();
+public JSONObject toJSON();
 
-    public String toCSV();
+public String toCSV();
 
-    public void randomize();
+public void randomize();
 
-    Person find(String name);
+Person find(String name);
 
-    void removeRule(Rule rule);
+void removeRule(Rule rule);
 }
