@@ -1,9 +1,15 @@
+package com.thepaperpilot.giftexchange.desktop.ui;
+
+import com.thepaperpilot.giftexchange.core.Group;
+import com.thepaperpilot.giftexchange.core.Person;
+import com.thepaperpilot.giftexchange.desktop.JPerson;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class PersonCard {
+public class PersonCard {
 public JTextArea giving;
 public JTextArea receiving;
 public JPanel card;
@@ -33,8 +39,8 @@ public PersonCard(final Person person) {
 	people.setBackground(person.participating ? Color.black : Color.red);
 	settings.setBackground(person.participating ? Color.black : Color.red);
 	participating.setSelected(person.participating);
-	final ImageIcon lock = new ImageIcon("lock.png");
-	final ImageIcon unlock = new ImageIcon("unlock.png");
+	final ImageIcon lock = new ImageIcon("assets/lock.png");
+	final ImageIcon unlock = new ImageIcon("assets/unlock.png");
 	lockGive.setIcon(person.lockGive ? lock : unlock);
 	lockReceive.setIcon(person.lockReceive ? lock : unlock);
 
@@ -42,13 +48,13 @@ public PersonCard(final Person person) {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			person.lockGive = !person.lockGive;
-			Person partner = ChristmasExchange.getGroup().find(person.givingTo);
+			Person partner = GiftExchange.getGroup().find(person.givingTo);
 			lockGive.setIcon(person.lockGive ? lock : unlock);
 			if(partner != null) {
 				partner.lockReceive = person.lockGive;
-				partner.getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
+				((JPerson) partner).getCard().lockReceive.setIcon(partner.lockReceive ? lock : unlock);
 			}
-			Parser.write();
+			Group.write();
 		}
 	});
 
@@ -56,13 +62,13 @@ public PersonCard(final Person person) {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			person.lockReceive = !person.lockReceive;
-			Person partner = ChristmasExchange.getGroup().find(person.receivingFrom);
+			Person partner = GiftExchange.getGroup().find(person.receivingFrom);
 			lockReceive.setIcon(person.lockReceive ? lock : unlock);
 			if(partner != null) {
 				partner.lockGive = person.lockReceive;
-				partner.getCard().lockGive.setIcon(partner.lockGive ? lock : unlock);
+				((JPerson) partner).getCard().lockGive.setIcon(partner.lockGive ? lock : unlock);
 			}
-			Parser.write();
+			Group.write();
 		}
 	});
 	toPerson.addActionListener(new ActionListener() {
@@ -83,11 +89,11 @@ public PersonCard(final Person person) {
 			person.name = personName.getText();
 			person.participating = participating.isSelected();
 			person.group = groupName.getText();
-			Parser.write();
 			name.setText(person.name);
 			people.setBackground(person.participating ? Color.black : Color.red);
 			settings.setBackground(person.participating ? Color.black : Color.red);
 			group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
+			Group.write();
 		}
 	});
 	delete.addActionListener(new ActionListener() {
@@ -97,18 +103,10 @@ public PersonCard(final Person person) {
 				@Override
 				public void onOK() {
 					// TODO implement deleting people
-					Parser.write();
+					Group.write();
 				}
 			}.create();
 		}
 	});
-}
-
-
-private void createUIComponents() {
-	people = new Shadow();
-	settings = new Shadow();
-	personName = new JTextField();
-	personName.setBorder(BorderFactory.createEmptyBorder());
 }
 }

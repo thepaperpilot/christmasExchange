@@ -1,53 +1,61 @@
+package com.thepaperpilot.giftexchange.desktop.ui;
+
+import com.thepaperpilot.giftexchange.core.Group;
+import com.thepaperpilot.giftexchange.core.Person;
+import com.thepaperpilot.giftexchange.core.Rule;
+import com.thepaperpilot.giftexchange.core.Token;
+import com.thepaperpilot.giftexchange.desktop.JRule;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.PatternSyntaxException;
 
-class Token {
+public class TokenCard extends Token {
 
 public final Rule parent;
-private String token;
-private boolean checkNames;
-private boolean checkGroups;
-private boolean matchCase;
-private boolean useRegex;
-private boolean invert;
+public final Rule.Tokens type;
 private JPanel panel;
 private JButton expression;
 
-public Token(JSONObject object, Rule parent) {
-	this(
-			object.get("token") == null ? "" : String.valueOf(object.get("token")),
-			object.get("names") != null && (boolean) object.get("names"),
-			object.get("groups") != null && (boolean) object.get("groups"),
-			object.get("case") != null && (boolean) object.get("case"),
-			object.get("regex") != null && (boolean) object.get("regex"),
-			object.get("invert") != null && (boolean) object.get("invert"),
-			parent);
-}
-
-public Token(Rule parent) {
-	this("", true, false, false, false, false, parent);
-}
-
-public Token(String token, boolean checkNames, boolean checkGroups, boolean matchCase, boolean useRegex, boolean invert, Rule parent) {
-	this.token = token;
-	this.checkNames = checkNames;
-	this.checkGroups = checkGroups;
-	this.matchCase = matchCase;
-	this.useRegex = useRegex;
-	this.invert = invert;
+public TokenCard(JSONObject object, Rule parent, Rule.Tokens type) {
+	super(object, parent);
 	this.parent = parent;
+	this.type = type;
 
 	expression.setText(token);
 	expression.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			new EditToken(Token.this).create();
+			new EditToken(TokenCard.this).create();
 		}
 	});
+}
+
+public TokenCard(Rule parent, Rule.Tokens type) {
+	super(parent);
+	this.parent = parent;
+	this.type = type;
+
+	expression.setText(token);
+	expression.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			new EditToken(TokenCard.this).create();
+		}
+	});
+}
+
+public TokenCard(String text, boolean selected, boolean selected1, boolean selected2, boolean selected3, boolean selected4, Rule parent, Rule.Tokens type) {
+	this(parent, type);
+	token = text;
+	checkNames = selected;
+	checkGroups = selected1;
+	matchCase = selected2;
+	useRegex = selected3;
+	invert = selected4;
 }
 
 public boolean isCheckNames() {
@@ -66,7 +74,7 @@ public String getToken() {
 	return token;
 }
 
-public void setToken(Token token) {
+public void setToken(TokenCard token) {
 	this.token = token.token;
 	this.checkNames = token.checkNames;
 	this.checkGroups = token.checkGroups;
@@ -75,8 +83,7 @@ public void setToken(Token token) {
 	this.invert = token.invert;
 
 	expression.setText(this.token);
-	parent.card.update();
-	Parser.write();
+	Group.write();
 }
 
 public boolean isUseRegex() {
@@ -161,7 +168,8 @@ public JPanel toCard() {
 }
 
 public void deleteToken() {
-	parent.remove(this);
-	parent.card.update();
+	((JRule) parent).remove(this, type);
+	((JRule) parent).getCard().update();
 }
+
 }

@@ -1,3 +1,9 @@
+package com.thepaperpilot.giftexchange.desktop.ui;
+
+import com.thepaperpilot.giftexchange.core.Person;
+import com.thepaperpilot.giftexchange.desktop.JPerson;
+import com.thepaperpilot.giftexchange.desktop.WrapLayout;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -5,7 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 class EditToken extends JDialog {
-private final Token token;
+private final TokenCard token;
 private JPanel contentPane;
 private JButton buttonOK;
 private JButton buttonCancel;
@@ -18,7 +24,7 @@ private JCheckBox useRegEx;
 private JCheckBox invert;
 private JButton buttonDelete;
 
-public EditToken(final Token token) {
+public EditToken(final TokenCard token) {
 	this.token = token;
 	setContentPane(contentPane);
 	setModal(true);
@@ -104,7 +110,7 @@ public EditToken(final Token token) {
 		}
 	});
 	name.getDocument().addDocumentListener(new DocumentListener() {
-		public void changedUpdate(DocumentEvent e) {
+		public void insertUpdate(DocumentEvent e) {
 			updatePreview();
 		}
 
@@ -112,7 +118,7 @@ public EditToken(final Token token) {
 			updatePreview();
 		}
 
-		public void insertUpdate(DocumentEvent e) {
+		public void changedUpdate(DocumentEvent e) {
 			updatePreview();
 		}
 	});
@@ -128,26 +134,26 @@ private void onCancel() {
 	dispose();
 }
 
-private void createUIComponents() {
-	name = new JTextField();
-	name.setBorder(BorderFactory.createEmptyBorder());
-	preview = new JPanel();
-	preview.setLayout(new WrapLayout(FlowLayout.LEFT));
-}
-
 private void updatePreview() {
 	preview.removeAll();
-	Token token = new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), this.token.parent);
-	for(Person person : ChristmasExchange.getGroup().getPeople()) {
+	TokenCard token = new TokenCard(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), this.token.parent, this.token.type);
+	for(Person person : GiftExchange.getGroup().getPeople()) {
 		if(token.check(person))
-			preview.add(person.getCard().card);
+			preview.add(((JPerson) person).getCard().card);
 	}
 	preview.revalidate();
 	preview.updateUI();
 }
 
-Token getToken() {
-	return new Token(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), token.parent);
+TokenCard getToken() {
+	return new TokenCard(name.getText(), checkNames.isSelected(), checkGroups.isSelected(), matchCase.isSelected(), useRegEx.isSelected(), invert.isSelected(), token.parent, token.type);
+}
+
+private void createUIComponents() {
+	name = new JTextField();
+	name.setBorder(BorderFactory.createEmptyBorder());
+	preview = new JPanel();
+	preview.setLayout(new WrapLayout(FlowLayout.LEFT));
 }
 
 public void create() {
@@ -156,4 +162,5 @@ public void create() {
 	setSize(new Dimension(600, 400));
 	setVisible(true);
 }
+
 }

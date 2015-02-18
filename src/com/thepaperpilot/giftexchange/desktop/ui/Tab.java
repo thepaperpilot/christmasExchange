@@ -1,3 +1,7 @@
+package com.thepaperpilot.giftexchange.desktop.ui;
+
+import com.thepaperpilot.giftexchange.desktop.JGroup;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +21,7 @@ private JButton rename;
 private JButton GENERATEButton;
 private JPanel settings;
 
-public Tab(final Group group) {
+public Tab(final JGroup group) {
 	people.add(group.peopleCards());
 	rules.add(group.ruleCards());
 	panel.validate();
@@ -56,7 +60,7 @@ public Tab(final Group group) {
 			new ConfirmDialog() {
 				@Override
 				public void onOK() {
-					ChristmasExchange.removeGroup();
+					GiftExchange.removeGroup();
 				}
 			}.create();
 		}
@@ -64,7 +68,7 @@ public Tab(final Group group) {
 	rename.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			ChristmasExchange.renameGroup(groupName.getText());
+			GiftExchange.renameGroup(groupName.getText());
 		}
 	});
 
@@ -72,7 +76,7 @@ public Tab(final Group group) {
 	GENERATEButton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ChristmasExchange.generate();
+			GiftExchange.generate();
 		}
 	});
 }
@@ -81,8 +85,5 @@ private void createUIComponents() {
 	people = new JPanel(new GridLayout(0, 1));
 	rules = new JPanel(new GridLayout(0, 1));
 	settings = new JPanel(new GridLayout(0, 1));
-
-	groupName = new JTextField();
-	groupName.setBorder(BorderFactory.createEmptyBorder());
 }
 }

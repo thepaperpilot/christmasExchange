@@ -1,4 +1,7 @@
+package com.thepaperpilot.giftexchange.desktop.ui;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 abstract class ConfirmDialog extends JDialog {
@@ -51,4 +54,5 @@ public void create() {
 	pack();
 	setVisible(true);
 }
+
 }

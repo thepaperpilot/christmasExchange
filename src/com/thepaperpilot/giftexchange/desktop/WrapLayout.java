@@ -1,10 +1,12 @@
+package com.thepaperpilot.giftexchange.desktop;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * FlowLayout subclass that fully supports wrapping of components.
  */
-class WrapLayout extends FlowLayout {
+public class WrapLayout extends FlowLayout {
 private Dimension preferredLayoutSize;
 
 /**

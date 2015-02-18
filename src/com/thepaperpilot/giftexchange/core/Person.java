@@ -1,18 +1,19 @@
+package com.thepaperpilot.giftexchange.core;
+
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-class Person {
-private final PersonCard card;
+public class Person {
 public boolean participating;
-String name;
-String group;
-String givingTo;
-String receivingFrom;
-boolean lockGive;
-boolean lockReceive;
+public String name;
+public String group;
+public String givingTo;
+public String receivingFrom;
+public boolean lockGive;
+public boolean lockReceive;
 
-public Person(JSONObject person) {
+protected Person(JSONObject person) {
 	name = person.get("name") == null ? "" : String.valueOf(person.get("name"));
 	group = person.get("group") == null ? "" : String.valueOf(person.get("group"));
 	givingTo = (String) person.get("giving");
@@ -20,11 +21,9 @@ public Person(JSONObject person) {
 	lockGive = person.get("lockGive") != null && (boolean) person.get("lockGive");
 	lockReceive = person.get("lockReceive") != null && (boolean) person.get("lockReceive");
 	participating = person.get("participating") == null || (boolean) person.get("participating");
-
-	card = new PersonCard(this);
 }
 
-public JSONObject toJSON() {
+JSONObject toJSON() {
 	JSONObject person = new JSONObject();
 	person.put("name", name);
 	person.put("group", group);
@@ -36,11 +35,7 @@ public JSONObject toJSON() {
 	return person;
 }
 
-public String toCSV() {
-	return name + "," + givingTo + "," + receivingFrom + "\n";
-}
-
-public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
+void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 	int i = 0;
 	outer:
 	while(i < people.size()) {
@@ -52,9 +47,5 @@ public void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 			}
 		i++;
 	}
-}
-
-public PersonCard getCard() {
-	return card;
 }
 }
