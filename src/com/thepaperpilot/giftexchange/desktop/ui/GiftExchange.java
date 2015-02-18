@@ -36,6 +36,20 @@ public static void main(String[] args) {
 	populateTabs();
 }
 
+private static ArrayList<Group> read() {
+	ArrayList<Group> groups = new ArrayList<>();
+	try {
+		JSONParser parser = new JSONParser();
+		JSONObject object = (JSONObject) parser.parse(new FileReader("data.json"));
+		for(Object group : (JSONArray) object.get("groups")) {
+			groups.add(new JGroup((JSONObject) group));
+		}
+	} catch(IOException | NullPointerException | ParseException e) {
+		e.printStackTrace();
+	}
+	return groups;
+}
+
 private static void populateTabs() {
 	groupTabs = new ArrayList<>();
 	instance.tabs.removeAll();
@@ -51,20 +65,6 @@ private static void populateTabs() {
 	instance.tabs.setTitleAt(instance.tabs.getTabCount() - 1, "+");
 }
 
-private static ArrayList<Group> read() {
-	ArrayList<Group> groups = new ArrayList<>();
-	try {
-		JSONParser parser = new JSONParser();
-		JSONObject object = (JSONObject) parser.parse(new FileReader("data.json"));
-		for(Object group : (JSONArray) object.get("groups")) {
-			groups.add(new JGroup((JSONObject) group));
-		}
-	} catch(IOException | NullPointerException | ParseException e) {
-		e.printStackTrace();
-	}
-	return groups;
-}
-
 public static void generate() {
 	GiftExchange.instance.error.setText("");
 	if(Group.groups.size() <= 0) {
@@ -74,7 +74,7 @@ public static void generate() {
 	}
 }
 
-public void error(String error) {
+void error(String error) {
 	instance.error.append("\n" + error);
 }
 
@@ -86,31 +86,29 @@ public static void removeGroup() {
 	removeGroup(getGroup());
 }
 
-public static boolean removeGroup(Group group) {
-	boolean removed = Group.groups.remove(group);
+private static void removeGroup(Group group) {
+	Group.groups.remove(group);
 	Group.write();
 	instance.tabs.remove(instance.tabs.getSelectedIndex());
-	return removed;
 }
 
-public static boolean addGroup(Group group) {
-	boolean added = Group.groups.add(group);
+public static void addGroup(Group group) {
+	Group.groups.add(group);
 	Group.write();
 	Tab tab = new Tab((JGroup) group);
 	instance.tabs.add(tab.panel, instance.tabs.getTabCount() - 1);
 	instance.tabs.setTitleAt(instance.tabs.getTabCount() - 2, group.getName());
 	groupTabs.add(tab);
-	return added;
-}
-
-public static void renameGroup(Group group, String name) {
-	group.setName(name);
-	Group.write();
-	instance.tabs.setTitleAt(instance.tabs.getSelectedIndex(), name);
 }
 
 public static void renameGroup(String text) {
 	renameGroup(getGroup(), text);
+}
+
+private static void renameGroup(Group group, String name) {
+	group.setName(name);
+	Group.write();
+	instance.tabs.setTitleAt(instance.tabs.getSelectedIndex(), name);
 }
 
 }

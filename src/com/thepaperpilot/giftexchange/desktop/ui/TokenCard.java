@@ -8,7 +8,6 @@ import com.thepaperpilot.giftexchange.desktop.JRule;
 import org.json.simple.JSONObject;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.PatternSyntaxException;
@@ -34,6 +33,16 @@ public TokenCard(JSONObject object, Rule parent, Rule.Tokens type) {
 	});
 }
 
+public TokenCard(String text, boolean selected, boolean selected1, boolean selected2, boolean selected3, boolean selected4, Rule parent, Rule.Tokens type) {
+	this(parent, type);
+	token = text;
+	checkNames = selected;
+	checkGroups = selected1;
+	matchCase = selected2;
+	useRegex = selected3;
+	invert = selected4;
+}
+
 public TokenCard(Rule parent, Rule.Tokens type) {
 	super(parent);
 	this.parent = parent;
@@ -46,16 +55,6 @@ public TokenCard(Rule parent, Rule.Tokens type) {
 			new EditToken(TokenCard.this).create();
 		}
 	});
-}
-
-public TokenCard(String text, boolean selected, boolean selected1, boolean selected2, boolean selected3, boolean selected4, Rule parent, Rule.Tokens type) {
-	this(parent, type);
-	token = text;
-	checkNames = selected;
-	checkGroups = selected1;
-	matchCase = selected2;
-	useRegex = selected3;
-	invert = selected4;
 }
 
 public boolean isCheckNames() {

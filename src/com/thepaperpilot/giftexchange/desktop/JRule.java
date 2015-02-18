@@ -1,6 +1,8 @@
 package com.thepaperpilot.giftexchange.desktop;
 
-import com.thepaperpilot.giftexchange.core.*;
+import com.thepaperpilot.giftexchange.core.Group;
+import com.thepaperpilot.giftexchange.core.Rule;
+import com.thepaperpilot.giftexchange.core.Token;
 import com.thepaperpilot.giftexchange.desktop.ui.RuleCard;
 import com.thepaperpilot.giftexchange.desktop.ui.TokenCard;
 import org.json.simple.JSONArray;
@@ -18,24 +20,9 @@ public JRule(JSONObject rule) {
 
 	card = new RuleCard(this);
 }
+
 public RuleCard getCard() {
 	return card;
-}
-
-public void add(Tokens type) {
-	switch(type) {
-		default:
-		case SOURCE:
-			sources.add(new TokenCard(this, type));
-			break;
-		case WHITE:
-			whitelist.add(new TokenCard(this, type));
-			break;
-		case BLACK:
-			blacklist.add(new TokenCard(this, type));
-			break;
-	}
-	Group.write();
 }
 
 public void remove(TokenCard token, Tokens type) {
@@ -59,7 +46,8 @@ public JPanel getCard(Tokens source) {
 	panel.setBackground(Color.white);
 	panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 	switch(source) {
-		default:case SOURCE:
+		default:
+		case SOURCE:
 			for(Token token : sources) {
 				panel.add(((TokenCard) token).toCard());
 			}
@@ -86,5 +74,21 @@ protected ArrayList<Token> find(JSONArray JSONtokens, Tokens type) {
 		tokens.add(new TokenCard((JSONObject) object, this, type));
 	}
 	return tokens;
+}
+
+public void add(Tokens type) {
+	switch(type) {
+		default:
+		case SOURCE:
+			sources.add(new TokenCard(this, type));
+			break;
+		case WHITE:
+			whitelist.add(new TokenCard(this, type));
+			break;
+		case BLACK:
+			blacklist.add(new TokenCard(this, type));
+			break;
+	}
+	Group.write();
 }
 }

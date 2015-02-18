@@ -12,7 +12,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
-public class JFamily extends Family {
+class JFamily extends Family {
 
 public JFamily(JSONObject family) {
 	name = family.get("name") == null ? "" : (String) family.get("name");

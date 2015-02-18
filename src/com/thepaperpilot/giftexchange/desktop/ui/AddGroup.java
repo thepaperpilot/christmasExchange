@@ -3,7 +3,6 @@ package com.thepaperpilot.giftexchange.desktop.ui;
 import com.thepaperpilot.giftexchange.desktop.JGroup;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

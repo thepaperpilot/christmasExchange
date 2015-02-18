@@ -6,7 +6,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class Token {
 
-protected final Rule parent;
+private final Rule parent;
 protected String token;
 protected boolean checkNames;
 protected boolean checkGroups;
@@ -25,7 +25,7 @@ protected Token(JSONObject object, Rule parent) {
 			    parent);
 }
 
-protected Token(String token, boolean checkNames, boolean checkGroups, boolean matchCase, boolean useRegex, boolean invert, Rule parent) {
+private Token(String token, boolean checkNames, boolean checkGroups, boolean matchCase, boolean useRegex, boolean invert, Rule parent) {
 	this.token = token;
 	this.checkNames = checkNames;
 	this.checkGroups = checkGroups;

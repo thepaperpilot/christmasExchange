@@ -1,7 +1,6 @@
 package com.thepaperpilot.giftexchange.desktop.ui;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class FamilyHeader {
 private final String familyName;
