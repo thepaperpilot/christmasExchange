@@ -43,7 +43,6 @@ public void remove(TokenCard token, Tokens type) {
 
 public JPanel getCard(Tokens source) {
 	JPanel panel = new JPanel();
-	panel.setBackground(Color.white);
 	panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 	switch(source) {
 		default:

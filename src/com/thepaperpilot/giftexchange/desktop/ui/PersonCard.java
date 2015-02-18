@@ -36,8 +36,7 @@ public PersonCard(final Person person) {
 	receiving.setText(person.receivingFrom);
 	group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
 	groupName.setText(person.group);
-	people.setBackground(person.participating ? Color.black : Color.red);
-	settings.setBackground(person.participating ? Color.black : Color.red);
+	card.setBackground(person.participating ? Color.LIGHT_GRAY : Color.red);
 	participating.setSelected(person.participating);
 	final ImageIcon lock = new ImageIcon("assets/lock.png");
 	final ImageIcon unlock = new ImageIcon("assets/unlock.png");
@@ -90,8 +89,7 @@ public PersonCard(final Person person) {
 			person.participating = participating.isSelected();
 			person.group = groupName.getText();
 			name.setText(person.name);
-			people.setBackground(person.participating ? Color.black : Color.red);
-			settings.setBackground(person.participating ? Color.black : Color.red);
+			card.setBackground(person.participating ? Color.LIGHT_GRAY : Color.red);
 			group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
 			Group.write();
 		}

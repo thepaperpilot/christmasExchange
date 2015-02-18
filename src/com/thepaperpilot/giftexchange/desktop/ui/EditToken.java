@@ -150,8 +150,6 @@ TokenCard getToken() {
 }
 
 private void createUIComponents() {
-	name = new JTextField();
-	name.setBorder(BorderFactory.createEmptyBorder());
 	preview = new JPanel();
 	preview.setLayout(new WrapLayout(FlowLayout.LEFT));
 }

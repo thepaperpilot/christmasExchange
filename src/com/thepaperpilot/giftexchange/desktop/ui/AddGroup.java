@@ -19,10 +19,4 @@ public AddGroup() {
 		}
 	});
 }
-
-private void createUIComponents() {
-	groupName = new JTextField();
-	groupName.setBorder(BorderFactory.createEmptyBorder());
-}
-
 }

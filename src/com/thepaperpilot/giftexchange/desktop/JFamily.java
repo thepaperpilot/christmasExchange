@@ -27,9 +27,7 @@ public JPanel toCards() {
 	final JPanel card = new JPanel();
 	card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
 	card.add(new FamilyHeader(name).panel);
-	card.setBackground(Color.white);
 	JPanel peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
-	peopleCards.setBackground(Color.white);
 	peopleCards.setSize(1, 1);
 	peopleCards.addComponentListener(new ComponentListener() {
 		@Override

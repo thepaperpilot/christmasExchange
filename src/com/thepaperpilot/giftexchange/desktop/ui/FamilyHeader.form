@@ -5,9 +5,7 @@
     <constraints>
       <xy x="20" y="20" width="524" height="79"/>
     </constraints>
-    <properties>
-      <opaque value="false"/>
-    </properties>
+    <properties/>
     <border type="none"/>
     <children>
       <component id="b644c" class="javax.swing.JSeparator">

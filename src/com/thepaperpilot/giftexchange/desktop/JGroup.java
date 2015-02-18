@@ -46,7 +46,6 @@ public Box peopleCards() {
 
 public JPanel ruleCards() {
 	ruleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
-	ruleCards.setBackground(Color.white);
 	for(Rule rule : rules) {
 		ruleCards.add(((JRule) rule).getCard().card);
 	}
