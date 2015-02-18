@@ -4,6 +4,7 @@ import com.thepaperpilot.giftexchange.core.Family;
 import com.thepaperpilot.giftexchange.core.Group;
 import com.thepaperpilot.giftexchange.core.Person;
 import com.thepaperpilot.giftexchange.core.Rule;
+import com.thepaperpilot.giftexchange.desktop.ui.GiftExchange;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -52,8 +53,8 @@ public JPanel ruleCards() {
 	return ruleCards;
 }
 
-public void randomize() {
-	super.randomize();
+public int randomize() {
+	int nulls = super.randomize();
 	new Thread(new Runnable() {
 		@Override
 		public void run() {
@@ -64,6 +65,10 @@ public void randomize() {
 			}
 		}
 	}).start();
+	if(nulls != 0) {
+		GiftExchange.error("Unable to sort " + nulls + (nulls == 1 ? " person" : " people") + "\nPlease try again. If this issue persists, try adding or removing people");
+	}
+	return nulls;
 }
 
 public void removeRule(Rule rule) {

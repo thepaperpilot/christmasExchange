@@ -31,8 +31,9 @@ public ArrayList<Person> getPeople() {
 	return people;
 }
 
-public void randomize() {
+public int randomize() {
 	Random r = new Random();
+	int nulls = 0;
 	ArrayList<Person> available = new ArrayList<>(people);
 	for(Person person : people) {
 		if(!person.participating || person.lockReceive)
@@ -73,6 +74,7 @@ public void randomize() {
 		if(!person.participating)
 			continue;
 		if(available.size() <= 0 || (available.size() == 1 && available.contains(person))) {
+			nulls++;
 			continue;
 		}
 		// Temporarily remove the person, so we don't choose them to give to (only rule at this point)
@@ -83,8 +85,8 @@ public void randomize() {
 		partner.receivingFrom = person.name;
 		available.remove(partner);
 	}
-
 	write();
+	return nulls;
 }
 
 public Person find(String name) {

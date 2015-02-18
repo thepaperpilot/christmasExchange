@@ -13,7 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class GiftExchange {
+public class GiftExchange {
 
 private static final GiftExchange instance = new GiftExchange();
 
@@ -66,16 +66,18 @@ private static void populateTabs() {
 }
 
 public static void generate() {
-	GiftExchange.instance.error.setText("");
+	instance.error.setText("");
+	instance.error.setVisible(false);
 	if(Group.groups.size() <= 0) {
-		instance.error("Error: Invalid group selected");
+		error("Error: Invalid group selected");
 	} else {
 		getGroup().randomize();
 	}
 }
 
-void error(String error) {
+public static void error(String error) {
 	instance.error.append("\n" + error);
+	instance.error.setVisible(true);
 }
 
 static Group getGroup() {

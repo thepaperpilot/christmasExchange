@@ -21,6 +21,7 @@
           <font size="16" style="1"/>
           <foreground color="-65536"/>
           <opaque value="false"/>
+          <visible value="false"/>
         </properties>
       </component>
       <tabbedpane id="5c79e" binding="tabs">
