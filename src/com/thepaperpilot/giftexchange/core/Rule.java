@@ -31,12 +31,17 @@ protected ArrayList<Token> find(JSONArray JSONtokens, Tokens type) {
 }
 
 boolean checkRule(Person check) {
+	boolean any = false;
 	for(Token token : whitelist) {
-		if(!token.check(check))
-			return false;
-		if(!whiteAny)
-			return false;
+		if(token.check(check)) {
+			if(whiteAny) {
+				any = true;
+				break;
+			}
+		} else if(!whiteAny) return false;
 	}
+	if(whiteAny && !any)
+		return false;
 	for(Token token : blacklist) {
 		if(token.check(check))
 			return false;
@@ -65,10 +70,9 @@ JSONObject toJSON() {
 
 boolean checkSource(Person person) {
 	for(Token token : sources) {
-		if(token.check(person))
-			return true;
-		if(!sourceAny)
-			return false;
+		if(token.check(person)) {
+			if(sourceAny) return true;
+		} else if(!sourceAny) return false;
 	}
 	return false;
 }
