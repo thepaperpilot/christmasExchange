@@ -1,5 +1,6 @@
 package com.thepaperpilot.giftexchange.desktop.ui;
 
+import com.thepaperpilot.giftexchange.core.Group;
 import com.thepaperpilot.giftexchange.core.Rule;
 import com.thepaperpilot.giftexchange.desktop.JRule;
 
@@ -17,12 +18,22 @@ private JPanel sources;
 private JPanel whites;
 private JPanel blacks;
 private JButton deleteButton;
+private JRadioButton sourceAny;
+private JRadioButton sourceAll;
+private JRadioButton whiteAny;
+private JRadioButton whiteAll;
 
 public RuleCard(final JRule rule) {
 	parent = rule;
 	sources.add(rule.getCard(Rule.Tokens.SOURCE));
 	blacks.add(rule.getCard(Rule.Tokens.BLACK));
 	whites.add(rule.getCard(Rule.Tokens.WHITE));
+    if(rule.sourceAny)
+        sourceAny.setSelected(true);
+    else sourceAll.setSelected(true);
+    if(rule.whiteAny)
+        whiteAny.setSelected(true);
+    else whiteAll.setSelected(true);
 	addSource.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
@@ -59,6 +70,34 @@ public RuleCard(final JRule rule) {
 					GiftExchange.getGroup().removeRule(rule);
 				}
 			}.create();
+		}
+	});
+	whiteAll.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			rule.whiteAny = false;
+			Group.write();
+		}
+	});
+	whiteAny.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			rule.whiteAny = true;
+			Group.write();
+		}
+	});
+	sourceAll.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			rule.sourceAny = false;
+			Group.write();
+		}
+	});
+	sourceAny.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			rule.sourceAny = true;
+			Group.write();
 		}
 	});
 }

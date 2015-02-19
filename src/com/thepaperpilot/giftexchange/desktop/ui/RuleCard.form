@@ -72,7 +72,7 @@
         <children>
           <component id="6bd09" class="javax.swing.JLabel" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="People who match ("/>
@@ -86,7 +86,7 @@
               <text value=") of these:"/>
             </properties>
           </component>
-          <component id="a598b" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="a598b" class="javax.swing.JRadioButton" binding="sourceAll">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -95,7 +95,7 @@
               <text value="all"/>
             </properties>
           </component>
-          <component id="74e30" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="74e30" class="javax.swing.JRadioButton" binding="sourceAny">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -139,7 +139,7 @@
               <text value="must match ("/>
             </properties>
           </component>
-          <component id="40931" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="40931" class="javax.swing.JRadioButton" binding="whiteAny">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -148,7 +148,7 @@
               <text value="any"/>
             </properties>
           </component>
-          <component id="2dfc2" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="2dfc2" class="javax.swing.JRadioButton" binding="whiteAll">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -214,4 +214,14 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="sourceButtons">
+      <member id="a598b"/>
+      <member id="74e30"/>
+    </group>
+    <group name="whiteButtons">
+      <member id="40931"/>
+      <member id="2dfc2"/>
+    </group>
+  </buttonGroups>
 </form>
