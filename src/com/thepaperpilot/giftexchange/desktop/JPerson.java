@@ -6,11 +6,14 @@ import org.json.simple.JSONObject;
 
 public class JPerson extends Person {
 
+private final PersonCard card;
+
 public JPerson(JSONObject person) {
 	super(person);
+	card = new PersonCard(this);
 }
 
 public PersonCard getCard() {
-	return new PersonCard(this);
+	return card;
 }
 }
