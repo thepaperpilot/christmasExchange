@@ -25,6 +25,15 @@ protected Person(JSONObject person, Family parent) {
 	participating = person.get("participating") == null || (boolean) person.get("participating");
 }
 
+public Person(Family parent) {
+	this.parent = parent;
+	name = "";
+	group = "";
+	lockGive = false;
+	lockReceive = false;
+	participating = true;
+}
+
 JSONObject toJSON() {
 	JSONObject person = new JSONObject();
 	person.put("name", name);

@@ -10,8 +10,9 @@ public class FamilyHeader {
 public JPanel panel;
 private JTextArea name;
 private JButton deleteButton;
+private JButton addButton;
 
-public FamilyHeader(final JFamily parent) {
+    public FamilyHeader(final JFamily parent) {
     name.setText(parent.name);
     deleteButton.addActionListener(new ActionListener() {
         @Override
@@ -24,5 +25,11 @@ public FamilyHeader(final JFamily parent) {
             }.create();
         }
     });
-}
+    addButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            parent.addPerson();
+        }
+    });
+    }
 }

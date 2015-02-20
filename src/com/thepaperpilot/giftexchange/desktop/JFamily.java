@@ -73,4 +73,12 @@ public void removePerson(Person person) {
         peopleCards.updateUI();
     }
 }
+
+public void addPerson() {
+	super.addPerson();
+	if(card != null) {
+		peopleCards.add(((JPerson) people.get(people.size() - 1)).getCard().card);
+		peopleCards.updateUI();
+	}
+}
 }

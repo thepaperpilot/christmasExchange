@@ -1,5 +1,6 @@
 package com.thepaperpilot.giftexchange.core;
 
+import com.thepaperpilot.giftexchange.desktop.JPerson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -33,5 +34,9 @@ public void removePerson(Person person) {
 
 public void remove() {
     parent.removeFamily(this);
+}
+
+public void addPerson() {
+	people.add(new JPerson(this));
 }
 }
