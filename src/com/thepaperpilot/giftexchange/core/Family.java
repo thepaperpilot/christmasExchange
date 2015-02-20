@@ -20,4 +20,9 @@ JSONObject toJSON() {
 	family.put("people", people);
 	return family;
 }
+
+public void remove(Person person) {
+    people.remove(person);
+    Group.write();
+}
 }

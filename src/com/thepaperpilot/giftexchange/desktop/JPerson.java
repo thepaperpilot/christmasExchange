@@ -8,8 +8,8 @@ public class JPerson extends Person {
 
 private final PersonCard card;
 
-public JPerson(JSONObject person) {
-	super(person);
+public JPerson(JSONObject person, JFamily parent) {
+	super(person, parent);
 	card = new PersonCard(this);
 }
 

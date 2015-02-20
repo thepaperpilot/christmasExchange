@@ -100,8 +100,7 @@ public PersonCard(final Person person) {
 			new ConfirmDialog() {
 				@Override
 				public void onOK() {
-					// TODO implement deleting people
-					Group.write();
+					person.remove();
 				}
 			}.create();
 		}

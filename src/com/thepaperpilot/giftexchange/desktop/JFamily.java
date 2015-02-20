@@ -14,12 +14,14 @@ import java.util.ArrayList;
 
 class JFamily extends Family {
 
+JPanel peopleCards;
+
 public JFamily(JSONObject family) {
 	name = family.get("name") == null ? "" : (String) family.get("name");
 	people = new ArrayList<>();
 	if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
 		for(Object person : (JSONArray) family.get("people")) {
-			people.add(new JPerson((JSONObject) person));
+			people.add(new JPerson((JSONObject) person, this));
 		}
 }
 
@@ -27,7 +29,7 @@ public JPanel toCards() {
 	final JPanel card = new JPanel();
 	card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
 	card.add(new FamilyHeader(name).panel);
-	JPanel peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
+	peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
 	peopleCards.setSize(1, 1);
 	peopleCards.addComponentListener(new ComponentListener() {
 		@Override
@@ -59,5 +61,13 @@ public JPanel toCards() {
 
 public ArrayList<Person> getPeople() {
 	return people;
+}
+
+public void remove(Person person) {
+    super.remove(person);
+    if(peopleCards != null) {
+        peopleCards.remove(((JPerson) person).getCard().card);
+        peopleCards.updateUI();
+    }
 }
 }

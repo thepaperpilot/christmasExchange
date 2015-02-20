@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Person {
+private final Family parent;
 public boolean participating;
 public String name;
 public String group;
@@ -13,8 +14,9 @@ public String receivingFrom;
 public boolean lockGive;
 public boolean lockReceive;
 
-protected Person(JSONObject person) {
-	name = person.get("name") == null ? "" : String.valueOf(person.get("name"));
+protected Person(JSONObject person, Family parent) {
+    this.parent = parent;
+    name = person.get("name") == null ? "" : String.valueOf(person.get("name"));
 	group = person.get("group") == null ? "" : String.valueOf(person.get("group"));
 	givingTo = (String) person.get("giving");
 	receivingFrom = (String) person.get("receiving");
@@ -47,5 +49,9 @@ void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 			}
 		i++;
 	}
+}
+
+public void remove() {
+    parent.remove(this);
 }
 }
