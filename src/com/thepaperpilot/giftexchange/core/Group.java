@@ -141,4 +141,9 @@ public void removeRule(Rule rule) {
 	rules.remove(rule);
 	write();
 }
+
+public void removeFamily(Family family) {
+    families.remove(family);
+    write();
+}
 }

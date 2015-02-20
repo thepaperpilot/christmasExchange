@@ -14,12 +14,13 @@ import java.util.ArrayList;
 
 public class JGroup extends Group {
 private JPanel ruleCards;
+private Box familyCards;
 
 public JGroup(JSONObject group) {
 	name = group.get("name") == null ? "" : (String) group.get("name");
 	if(group.get("families") != null && !((JSONArray) group.get("families")).isEmpty())
 		for(Object family : (JSONArray) group.get("families")) {
-			JFamily fam = new JFamily((JSONObject) family);
+			JFamily fam = new JFamily((JSONObject) family, this);
 			families.add(fam);
 			people.addAll(fam.getPeople());
 		}
@@ -37,11 +38,11 @@ public JGroup(String text) {
 }
 
 public Box peopleCards() {
-	Box group = new Box(BoxLayout.PAGE_AXIS);
+	familyCards = new Box(BoxLayout.PAGE_AXIS);
 	for(Family family : families) {
-		group.add(((JFamily) family).toCards());
+		familyCards.add(((JFamily) family).toCards());
 	}
-	return group;
+	return familyCards;
 }
 
 public JPanel ruleCards() {
@@ -73,5 +74,13 @@ public int randomize() {
 public void removeRule(Rule rule) {
 	super.removeRule(rule);
 	ruleCards.remove(((JRule) rule).getCard().card);
+}
+
+public void removeFamily(Family family) {
+    super.removeFamily(family);
+    if(familyCards != null) {
+        familyCards.remove(((JFamily) family).card);
+        familyCards.updateUI();
+    }
 }
 }

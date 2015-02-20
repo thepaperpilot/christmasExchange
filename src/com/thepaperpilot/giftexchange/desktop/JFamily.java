@@ -1,6 +1,7 @@
 package com.thepaperpilot.giftexchange.desktop;
 
 import com.thepaperpilot.giftexchange.core.Family;
+import com.thepaperpilot.giftexchange.core.Group;
 import com.thepaperpilot.giftexchange.core.Person;
 import com.thepaperpilot.giftexchange.desktop.ui.FamilyHeader;
 import org.json.simple.JSONArray;
@@ -12,11 +13,13 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
-class JFamily extends Family {
+public class JFamily extends Family {
 
+JPanel card;
 JPanel peopleCards;
 
-public JFamily(JSONObject family) {
+public JFamily(JSONObject family, Group parent) {
+    super(parent);
 	name = family.get("name") == null ? "" : (String) family.get("name");
 	people = new ArrayList<>();
 	if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
@@ -26,9 +29,9 @@ public JFamily(JSONObject family) {
 }
 
 public JPanel toCards() {
-	final JPanel card = new JPanel();
+	card = new JPanel();
 	card.setLayout(new BoxLayout(card, BoxLayout.PAGE_AXIS));
-	card.add(new FamilyHeader(name).panel);
+	card.add(new FamilyHeader(this).panel);
 	peopleCards = new JPanel(new WrapLayout(FlowLayout.LEFT));
 	peopleCards.setSize(1, 1);
 	peopleCards.addComponentListener(new ComponentListener() {
@@ -63,9 +66,9 @@ public ArrayList<Person> getPeople() {
 	return people;
 }
 
-public void remove(Person person) {
-    super.remove(person);
-    if(peopleCards != null) {
+public void removePerson(Person person) {
+    super.removePerson(person);
+    if(card != null) {
         peopleCards.remove(((JPerson) person).getCard().card);
         peopleCards.updateUI();
     }

@@ -52,6 +52,6 @@ void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 }
 
 public void remove() {
-    parent.remove(this);
+    parent.removePerson(this);
 }
 }

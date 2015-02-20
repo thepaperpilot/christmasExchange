@@ -7,8 +7,13 @@ import java.util.ArrayList;
 
 public class Family {
 
-protected String name;
+public String name;
 protected ArrayList<Person> people;
+private final Group parent;
+
+public Family(Group parent) {
+    this.parent = parent;
+}
 
 JSONObject toJSON() {
 	JSONObject family = new JSONObject();
@@ -21,8 +26,12 @@ JSONObject toJSON() {
 	return family;
 }
 
-public void remove(Person person) {
+public void removePerson(Person person) {
     people.remove(person);
     Group.write();
+}
+
+public void remove() {
+    parent.removeFamily(this);
 }
 }
