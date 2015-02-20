@@ -1,6 +1,5 @@
 package com.thepaperpilot.giftexchange.core;
 
-import com.thepaperpilot.giftexchange.desktop.JPerson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 public class Family {
 
 public String name;
-protected ArrayList<Person> people;
+protected ArrayList<Person> people = new ArrayList<>();
 private final Group parent;
 
 public Family(Group parent) {
@@ -37,6 +36,6 @@ public void remove() {
 }
 
 public void addPerson() {
-	people.add(new JPerson(this));
+	people.add(new Person(this));
 }
 }

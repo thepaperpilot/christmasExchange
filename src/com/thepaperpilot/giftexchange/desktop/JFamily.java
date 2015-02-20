@@ -19,13 +19,19 @@ JPanel card;
 JPanel peopleCards;
 
 public JFamily(JSONObject family, Group parent) {
-    super(parent);
+  super(parent);
 	name = family.get("name") == null ? "" : (String) family.get("name");
 	people = new ArrayList<>();
 	if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
 		for(Object person : (JSONArray) family.get("people")) {
 			people.add(new JPerson((JSONObject) person, this));
-		}
+	}
+}
+
+public JFamily(Group parent) {
+	super(parent);
+	name = "";
+	people = new ArrayList<>();
 }
 
 public JPanel toCards() {
@@ -75,9 +81,10 @@ public void removePerson(Person person) {
 }
 
 public void addPerson() {
-	super.addPerson();
+	JPerson person = new JPerson(this);
+	people.add(person);
 	if(card != null) {
-		peopleCards.add(((JPerson) people.get(people.size() - 1)).getCard().card);
+		peopleCards.add(person.getCard().card);
 		peopleCards.updateUI();
 	}
 }

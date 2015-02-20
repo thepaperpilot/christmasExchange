@@ -142,6 +142,13 @@ public void removeRule(Rule rule) {
 	write();
 }
 
+public void addFamily(String name) {
+	Family family = new Family(this);
+	family.name = name;
+	families.add(family);
+	write();
+}
+
 public void removeFamily(Family family) {
     families.remove(family);
     write();
