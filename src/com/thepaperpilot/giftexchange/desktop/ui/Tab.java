@@ -1,6 +1,9 @@
 package com.thepaperpilot.giftexchange.desktop.ui;
 
+import com.thepaperpilot.giftexchange.core.Group;
+import com.thepaperpilot.giftexchange.core.Rule;
 import com.thepaperpilot.giftexchange.desktop.JGroup;
+import com.thepaperpilot.giftexchange.desktop.JRule;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +23,7 @@ private JButton peopleButton;
 private JButton rename;
 private JButton GENERATEButton;
 private JPanel settings;
+private JButton ruleButton;
 
 public Tab(final JGroup group) {
 	people.add(group.peopleCards());
@@ -43,6 +47,14 @@ public Tab(final JGroup group) {
 			peopleButton.setSelected(false);
 			rulesButton.setSelected(true);
 			settingsButton.setSelected(false);
+		}
+	});
+	ruleButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			JRule rule = new JRule();
+			group.addRule(rule);
+			Group.write();
 		}
 	});
 	settingsButton.addActionListener(new ActionListener() {
@@ -71,7 +83,6 @@ public Tab(final JGroup group) {
 			GiftExchange.renameGroup(groupName.getText());
 		}
 	});
-
 
 	GENERATEButton.addActionListener(new ActionListener() {
 		@Override

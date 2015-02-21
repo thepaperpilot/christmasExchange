@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JGroup extends Group {
-private JPanel ruleCards;
+public JPanel ruleCards;
 private Box familyCards;
 
 public JGroup(JSONObject group) {
@@ -76,6 +76,7 @@ public int randomize() {
 public void removeRule(Rule rule) {
 	super.removeRule(rule);
 	ruleCards.remove(((JRule) rule).getCard().card);
+	ruleCards.updateUI();
 }
 
 public void addFamily(String name) {
@@ -96,5 +97,11 @@ public void removeFamily(Family family) {
         familyCards.remove(((JFamily) family).card);
         familyCards.updateUI();
     }
+}
+
+public void addRule(Rule rule) {
+	super.addRule(rule);
+	ruleCards.add(((JRule) rule).getCard().card);
+	ruleCards.updateUI();
 }
 }

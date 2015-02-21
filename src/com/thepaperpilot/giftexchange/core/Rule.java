@@ -20,6 +20,14 @@ protected Rule(JSONObject rule) {
 	whiteAny = rule.get("whiteAny") != null && (boolean) rule.get("whiteAny");
 }
 
+public Rule() {
+	sources = new ArrayList<>();
+	whitelist = new ArrayList<>();
+	blacklist = new ArrayList<>();
+	sourceAny = false;
+	whiteAny = false;
+}
+
 protected ArrayList<Token> find(JSONArray JSONtokens, Tokens type) {
 	ArrayList<Token> tokens = new ArrayList<>();
 	if(JSONtokens == null)

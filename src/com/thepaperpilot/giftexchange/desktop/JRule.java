@@ -21,6 +21,12 @@ public JRule(JSONObject rule) {
 	card = new RuleCard(this);
 }
 
+public JRule() {
+	super();
+
+	card = new RuleCard(this);
+}
+
 public RuleCard getCard() {
 	return card;
 }
