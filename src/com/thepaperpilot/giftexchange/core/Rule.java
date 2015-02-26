@@ -82,7 +82,7 @@ boolean checkSource(Person person) {
 			if(sourceAny) return true;
 		} else if(!sourceAny) return false;
 	}
-	return false;
+	return !sourceAny;
 }
 
 protected void add(Tokens type) {
