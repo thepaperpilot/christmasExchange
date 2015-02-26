@@ -12,11 +12,12 @@ public class Group {
 
 public static List<Group> groups;
 
-public static ArrayList<Family> families = new ArrayList<>();
+private static boolean randomizing = false;
 protected ArrayList<Person> people = new ArrayList<>();
 protected ArrayList<Rule> rules = new ArrayList<>();
 protected String name = "";
-protected int groupSize = 1;
+public ArrayList<Family> families = new ArrayList<>();
+private final int numGroups = 4;
 
 public String getName() {
 	return name;
@@ -31,64 +32,73 @@ public ArrayList<Person> getPeople() {
 }
 
 public void randomize() {
+	randomizing = true;
 	Random r = new Random();
-	int numFamilies = (int) Math.ceil(people.size() / (float) groupSize);
-	families = new ArrayList<>(numFamilies);
-	for(int i = 0; i < numFamilies; i++) {
+	families = new ArrayList<>(numGroups);
+	for(int i = 0; i < numGroups; i++) {
 		addFamily("Group " + (i + 1));
 	}
 	for(Person person : people) {
-		if(person.participating && !person.lock)
-			person.parent = -1;
-		else if(person.participating)
+		if(person.lock)
 			families.get(person.parent).people.add(person);
+		else person.parent = -1;
 	}
 	// Place people affected by rules, in order of rule priority
 	for(Rule rule : rules) {
 		for(Person person : people) {
 			if(!rule.checkSource(person))
 				continue;
-			if(!person.participating || person.lock)
+			if(person.lock)
 				continue;
 			ArrayList<Family> familiesAvailable = new ArrayList<>(families);
 			for (Iterator<Family> iterator = familiesAvailable.iterator(); iterator.hasNext(); ) {
 				Family family = iterator.next();
 				if (!person.compat(family.people, rules))
 					iterator.remove();
-				if (family.people.size() >= groupSize)
+				else if(family.people.size() >= Math.ceil(people.size() / (float) numGroups))
 					iterator.remove();
 			}
 			if(familiesAvailable.size() <= 0)
 				continue;
-			int family = r.nextInt(familiesAvailable.size());
-			person.parent = families.indexOf(familiesAvailable.get(family));
+			Family family = familiesAvailable.get(r.nextInt(familiesAvailable.size()));
+			person.parent = families.indexOf(family);
+			family.people.add(person);
+			for(Person person1 : people) {
+				if(!rule.checkWhite(person1) || rule.checkBlack(person1) || !person1.compat(family.people, rules))
+					continue;
+				if(family.people.size() < Math.floor(people.size() / (float) numGroups)) {
+					person1.parent = families.indexOf(family);
+					family.people.add(person1);
+				}
+			}
 		}
 	}
 	// Sort the rest of the people, up until all groups have their max size
 	for(Person person : people) {
-		if(!person.participating)
+		if(person.parent != -1)
 			continue;
 		ArrayList<Family> familiesAvailable = new ArrayList<>(families);
 		for (Iterator<Family> iterator = familiesAvailable.iterator(); iterator.hasNext(); ) {
 			Family family = iterator.next();
-			if (family.people.size() >= groupSize)
+			if(family.people.size() >= numGroups)
 				iterator.remove();
 		}
 		if(familiesAvailable.size() <= 0)
 			continue;
 		int family = r.nextInt(familiesAvailable.size());
 		person.parent = families.indexOf(familiesAvailable.get(family));
+		familiesAvailable.get(family).people.add(person);
 	}
 	for(Person person : people) {
 		if(person.parent != -1)
-			continue;
-		if(!person.participating)
 			continue;
 		ArrayList<Family> familiesAvailable = new ArrayList<>(families);
 		Collections.sort(familiesAvailable);
 		int family = r.nextInt(familiesAvailable.size());
 		person.parent = families.indexOf(familiesAvailable.get(family));
+		familiesAvailable.get(family).people.add(person);
 	}
+	randomizing = false;
 	write();
 }
 
@@ -103,7 +113,8 @@ public Person find(String name) {
 }
 
 public static void write() {
-	new Runnable() {
+	if(!randomizing)
+		new Runnable() {
 		@Override
 		public void run() {
 			try {
@@ -145,7 +156,7 @@ public void removeRule(Rule rule) {
 	write();
 }
 
-public void addFamily(String name) {
+protected void addFamily(String name) {
 	Family family = new Family(this);
 	family.name = name;
 	families.add(family);
@@ -157,11 +168,7 @@ public void removeFamily(Family family) {
     write();
 }
 
-public static Family get(int parent) {
+public Family get(int parent) {
 	return families.get(parent);
-}
-
-public void addFamily() {
-	addFamily("Group " + (families.size() + 1));
 }
 }

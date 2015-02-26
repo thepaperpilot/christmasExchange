@@ -9,15 +9,11 @@ public class Rule {
 protected final ArrayList<Token> sources;
 protected final ArrayList<Token> whitelist;
 protected final ArrayList<Token> blacklist;
-public boolean sourceAny;
-public boolean whiteAny;
 
 protected Rule(JSONObject rule) {
 	sources = find((JSONArray) rule.get("source"), Tokens.SOURCE);
 	whitelist = find((JSONArray) rule.get("whitelist"), Tokens.WHITE);
 	blacklist = find((JSONArray) rule.get("blacklist"), Tokens.BLACK);
-	sourceAny = rule.get("sourceAny") != null && (boolean) rule.get("sourceAny");
-	whiteAny = rule.get("whiteAny") != null && (boolean) rule.get("whiteAny");
 }
 
 protected ArrayList<Token> find(JSONArray JSONtokens, Tokens type) {
@@ -31,21 +27,12 @@ protected ArrayList<Token> find(JSONArray JSONtokens, Tokens type) {
 }
 
 boolean checkRule(Person check) {
-	boolean any = false;
-	for(Token token : whitelist) {
-		if(token.check(check)) {
-			if(whiteAny) {
-				any = true;
-				break;
-			}
-		} else if(!whiteAny) return false;
-	}
-	if(whiteAny && !any)
-		return false;
-	for(Token token : blacklist) {
+	for(Token token : whitelist)
+		if(!token.check(check))
+			return false;
+	for(Token token : blacklist)
 		if(token.check(check))
 			return false;
-	}
 	return true;
 }
 
@@ -63,17 +50,27 @@ JSONObject toJSON() {
 	object.put("source", sources);
 	object.put("whitelist", whites);
 	object.put("blacklist", blacks);
-	object.put("sourceAny", sourceAny);
-	object.put("whiteAny", whiteAny);
 	return object;
 }
 
 boolean checkSource(Person person) {
-	for(Token token : sources) {
-		if(token.check(person)) {
-			if(sourceAny) return true;
-		} else if(!sourceAny) return false;
-	}
+	for(Token token : sources)
+		if(token.check(person))
+			return true;
+	return false;
+}
+
+boolean checkWhite(Person person) {
+	for(Token token : whitelist)
+		if(token.check(person))
+			return true;
+	return false;
+}
+
+public boolean checkBlack(Person person) {
+	for(Token token : blacklist)
+		if(token.check(person))
+			return true;
 	return false;
 }
 

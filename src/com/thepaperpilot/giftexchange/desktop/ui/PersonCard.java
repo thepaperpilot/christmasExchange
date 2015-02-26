@@ -2,7 +2,6 @@ package com.thepaperpilot.giftexchange.desktop.ui;
 
 import com.thepaperpilot.giftexchange.core.Group;
 import com.thepaperpilot.giftexchange.core.Person;
-import com.thepaperpilot.giftexchange.desktop.JPerson;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,15 +19,12 @@ private JButton save;
 private JButton toPerson;
 private JButton toSettings;
 private JTextField groupName;
-private JCheckBox participating;
 
 public PersonCard(final Person person) {
 	name.setText(person.name);
 	personName.setText(person.name);
 	group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
 	groupName.setText(person.group);
-	card.setBackground(person.participating ? Color.LIGHT_GRAY : Color.red);
-	participating.setSelected(person.participating);
 	final ImageIcon lock = new ImageIcon("assets/lock.png");
 	final ImageIcon unlock = new ImageIcon("assets/unlock.png");
 	this.lock.setIcon(person.lock ? lock : unlock);
@@ -57,10 +53,8 @@ public PersonCard(final Person person) {
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
 			person.name = personName.getText();
-			person.participating = participating.isSelected();
 			person.group = groupName.getText();
 			name.setText(person.name);
-			card.setBackground(person.participating ? Color.LIGHT_GRAY : Color.red);
 			group.setText(person.group.equals("") ? "" : "(" + String.valueOf(person.group) + ")");
 			Group.write();
 		}
