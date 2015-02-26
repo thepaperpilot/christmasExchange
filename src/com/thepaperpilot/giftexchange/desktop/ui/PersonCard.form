@@ -9,7 +9,7 @@
     </properties>
     <border type="etched"/>
     <children>
-      <grid id="3e28a" binding="people" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="true" hgap="1" vgap="1">
+      <grid id="3e28a" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="1" vgap="1">
         <margin top="5" left="5" bottom="5" right="5"/>
         <constraints>
           <card name="person"/>
@@ -30,65 +30,9 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="ea084" class="javax.swing.JLabel" default-binding="true">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="12" style="1"/>
-              <text value="Giving to: "/>
-            </properties>
-          </component>
-          <component id="30ef6" class="javax.swing.JLabel" default-binding="true">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="12" style="1"/>
-              <text value="Receiving from: "/>
-            </properties>
-          </component>
-          <component id="a8fa5" class="javax.swing.JButton" binding="lockGive">
-            <constraints>
-              <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <opaque value="false"/>
-            </properties>
-          </component>
-          <component id="a7938" class="javax.swing.JButton" binding="lockReceive">
-            <constraints>
-              <grid row="4" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <opaque value="false"/>
-            </properties>
-          </component>
-          <component id="e2a39" class="javax.swing.JTextArea" binding="giving">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-              <font size="12"/>
-              <opaque value="false"/>
-            </properties>
-          </component>
-          <component id="84c99" class="javax.swing.JTextArea" binding="receiving">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-              <font size="12"/>
-              <opaque value="false"/>
-            </properties>
-          </component>
           <component id="de4ec" class="javax.swing.JTextArea" binding="group">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="7" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="7" anchor="1" fill="1" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
               <editable value="false"/>
@@ -98,7 +42,7 @@
           </component>
           <component id="4ea17" class="javax.swing.JTextArea" binding="name">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <editable value="false"/>
@@ -107,9 +51,18 @@
               <text value="Label"/>
             </properties>
           </component>
+          <component id="a8fa5" class="javax.swing.JButton" binding="lock">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <focusPainted value="false"/>
+              <opaque value="false"/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <grid id="95328" binding="settings" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="95328" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="5" left="5" bottom="5" right="5"/>
         <constraints>
           <card name="settings"/>
@@ -194,7 +147,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Group: "/>
+                  <text value="Identifier: "/>
                 </properties>
               </component>
             </children>

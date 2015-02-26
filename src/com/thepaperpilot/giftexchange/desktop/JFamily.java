@@ -24,7 +24,7 @@ public JFamily(JSONObject family, Group parent) {
 	people = new ArrayList<>();
 	if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
 		for(Object person : (JSONArray) family.get("people")) {
-			people.add(new JPerson((JSONObject) person, this));
+			people.add(new JPerson((JSONObject) person, Group.families.indexOf(this)));
 		}
 }
 

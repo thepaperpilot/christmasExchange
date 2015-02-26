@@ -55,22 +55,19 @@ public JPanel ruleCards() {
 	return ruleCards;
 }
 
-public int randomize() {
-	int nulls = super.randomize();
+public void randomize() {
+	super.randomize();
 	new Thread(new Runnable() {
 		@Override
 		public void run() {
-			for(Person person : people) {
-				JPerson jPerson = (JPerson) person;
-				jPerson.getCard().giving.setText(person.givingTo);
-				jPerson.getCard().receiving.setText(person.receivingFrom);
+			familyCards.removeAll();
+			for(Family family : families) {
+				familyCards.add(((JFamily) family).toCards());
 			}
+			familyCards.add(new FamilyHeader(JGroup.this).panel);
+			familyCards.updateUI();
 		}
 	}).start();
-	if(nulls != 0) {
-		GiftExchange.error("Unable to sort " + nulls + (nulls == 1 ? " person" : " people") + "\nPlease try again. If this issue persists, try adding or removing people");
-	}
-	return nulls;
 }
 
 public void removeRule(Rule rule) {

@@ -36,7 +36,7 @@ public FamilyHeader(final JFamily parent) {
     }
 
 public FamilyHeader(final Group parent) {
-    name.setText("New Family");
+    name.setText("Add Group");
     name.setEditable(true);
     deleteButton.setVisible(false);
     addButton.setVisible(false);
@@ -44,7 +44,7 @@ public FamilyHeader(final Group parent) {
     newFamily.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            parent.addFamily(name.getText());
+            parent.addFamily();
         }
     });
 }

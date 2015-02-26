@@ -6,18 +6,17 @@ import org.json.simple.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Group {
 
 public static List<Group> groups;
 
-protected ArrayList<Family> families = new ArrayList<>();
+public static ArrayList<Family> families = new ArrayList<>();
 protected ArrayList<Person> people = new ArrayList<>();
 protected ArrayList<Rule> rules = new ArrayList<>();
 protected String name = "";
+protected int groupSize = 1;
 
 public String getName() {
 	return name;
@@ -31,62 +30,66 @@ public ArrayList<Person> getPeople() {
 	return people;
 }
 
-public int randomize() {
+public void randomize() {
 	Random r = new Random();
-	int nulls = 0;
-	ArrayList<Person> available = new ArrayList<>(people);
-	for(Person person : people) {
-		if(!person.participating || person.lockReceive)
-			available.remove(person);
-		if(!person.lockGive) {
-			person.givingTo = null;
-		}
-		if(!person.lockReceive) {
-			person.receivingFrom = null;
-		}
+	int numFamilies = (int) Math.ceil(people.size() / (float) groupSize);
+	families = new ArrayList<>(numFamilies);
+	for(int i = 0; i < numFamilies; i++) {
+		addFamily("Group " + (i + 1));
 	}
+	for(Person person : people) {
+		if(person.participating && !person.lock)
+			person.parent = -1;
+		else if(person.participating)
+			families.get(person.parent).people.add(person);
+	}
+	// Place people affected by rules, in order of rule priority
 	for(Rule rule : rules) {
-		for(Family family : families) {
-			for(Person person : family.people) {
-				if(!rule.checkSource(person))
-					continue;
-				if(person.givingTo != null)
-					continue;
-				if(!person.participating)
-					continue;
-				ArrayList<Person> specificAvailable = new ArrayList<>(available);
-				specificAvailable.removeAll(family.people);
-				person.applyRules(specificAvailable, rules);
-				if(specificAvailable.size() != 1)
-					specificAvailable.remove(find(person.receivingFrom));
-				if(specificAvailable.size() <= 0)
-					continue;
-				Person partner = specificAvailable.get(specificAvailable.size() == 1 ? 0 : r.nextInt(specificAvailable.size()));
-				person.givingTo = partner.name;
-				partner.receivingFrom = person.name;
-				available.remove(partner);
+		for(Person person : people) {
+			if(!rule.checkSource(person))
+				continue;
+			if(!person.participating || person.lock)
+				continue;
+			ArrayList<Family> familiesAvailable = new ArrayList<>(families);
+			for (Iterator<Family> iterator = familiesAvailable.iterator(); iterator.hasNext(); ) {
+				Family family = iterator.next();
+				if (!person.compat(family.people, rules))
+					iterator.remove();
+				if (family.people.size() >= groupSize)
+					iterator.remove();
 			}
+			if(familiesAvailable.size() <= 0)
+				continue;
+			int family = r.nextInt(familiesAvailable.size());
+			person.parent = families.indexOf(familiesAvailable.get(family));
 		}
 	}
+	// Sort the rest of the people, up until all groups have their max size
 	for(Person person : people) {
-		if(person.givingTo != null)
+		if(!person.participating)
+			continue;
+		ArrayList<Family> familiesAvailable = new ArrayList<>(families);
+		for (Iterator<Family> iterator = familiesAvailable.iterator(); iterator.hasNext(); ) {
+			Family family = iterator.next();
+			if (family.people.size() >= groupSize)
+				iterator.remove();
+		}
+		if(familiesAvailable.size() <= 0)
+			continue;
+		int family = r.nextInt(familiesAvailable.size());
+		person.parent = families.indexOf(familiesAvailable.get(family));
+	}
+	for(Person person : people) {
+		if(person.parent != -1)
 			continue;
 		if(!person.participating)
 			continue;
-		if(available.size() <= 0 || (available.size() == 1 && available.contains(person))) {
-			nulls++;
-			continue;
-		}
-		// Temporarily remove the person, so we don't choose them to give to (only rule at this point)
-		boolean removed = available.remove(person);
-		Person partner = available.get(available.size() == 1 ? 0 : r.nextInt(available.size()));
-		if(removed) available.add(person);
-		person.givingTo = partner.name;
-		partner.receivingFrom = person.name;
-		available.remove(partner);
+		ArrayList<Family> familiesAvailable = new ArrayList<>(families);
+		Collections.sort(familiesAvailable);
+		int family = r.nextInt(familiesAvailable.size());
+		person.parent = families.indexOf(familiesAvailable.get(family));
 	}
 	write();
-	return nulls;
 }
 
 public Person find(String name) {
@@ -152,5 +155,13 @@ public void addFamily(String name) {
 public void removeFamily(Family family) {
     families.remove(family);
     write();
+}
+
+public static Family get(int parent) {
+	return families.get(parent);
+}
+
+public void addFamily() {
+	addFamily("Group " + (families.size() + 1));
 }
 }

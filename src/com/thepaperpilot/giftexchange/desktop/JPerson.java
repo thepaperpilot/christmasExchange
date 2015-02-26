@@ -9,12 +9,12 @@ public class JPerson extends Person {
 
 private final PersonCard card;
 
-public JPerson(JSONObject person, JFamily parent) {
+public JPerson(JSONObject person, int parent) {
 	super(person, parent);
 	card = new PersonCard(this);
 }
 
-public JPerson(Family parent) {
+public JPerson(int parent) {
 	super(parent);
 	card = new PersonCard(this);
 }

@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-public class Family {
+public class Family implements Comparable<Family> {
 
 public String name;
 protected ArrayList<Person> people;
@@ -37,6 +37,11 @@ public void remove() {
 }
 
 public void addPerson() {
-	people.add(new JPerson(this));
+	people.add(new JPerson(Group.families.indexOf(this)));
+}
+
+@Override
+public int compareTo(Family o) {
+	return people.size() - o.people.size();
 }
 }
