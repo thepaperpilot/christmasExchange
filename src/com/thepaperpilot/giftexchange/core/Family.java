@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Family implements Comparable<Family> {
 
 public String name;
-protected ArrayList<Person> people;
+protected final ArrayList<Person> people = new ArrayList<>();
 private final Group parent;
 
 public Family(Group parent) {
@@ -36,8 +36,8 @@ public void remove() {
     parent.removeFamily(this);
 }
 
-public void addPerson() {
-	people.add(new JPerson(Group.families.indexOf(this)));
+protected void addPerson() {
+	people.add(new JPerson(parent.families.indexOf(this), parent));
 }
 
 @Override

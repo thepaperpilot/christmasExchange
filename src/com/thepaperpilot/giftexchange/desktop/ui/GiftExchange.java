@@ -13,7 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GiftExchange {
+class GiftExchange {
 
 private static final GiftExchange instance = new GiftExchange();
 
@@ -86,7 +86,7 @@ public static void generate() {
 	}
 }
 
-public static void error(String error) {
+private static void error(String error) {
 	instance.error.append("\n" + error);
 	instance.error.setVisible(true);
 }

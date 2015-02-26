@@ -16,16 +16,21 @@ import java.util.ArrayList;
 public class JFamily extends Family {
 
 JPanel card;
-JPanel peopleCards;
+private JPanel peopleCards;
 
 public JFamily(JSONObject family, Group parent) {
-    super(parent);
+	super(parent);
 	name = family.get("name") == null ? "" : (String) family.get("name");
-	people = new ArrayList<>();
 	if(family.get("people") != null && !((JSONArray) family.get("people")).isEmpty())
 		for(Object person : (JSONArray) family.get("people")) {
-			people.add(new JPerson((JSONObject) person, Group.families.indexOf(this)));
+			people.add(new JPerson((JSONObject) person, parent.families.indexOf(this), parent));
 		}
+	toCards();
+}
+
+public JFamily(Group group) {
+	super(group);
+	toCards();
 }
 
 public JPanel toCards() {

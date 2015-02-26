@@ -2,10 +2,7 @@ package com.thepaperpilot.giftexchange.desktop;
 
 import com.thepaperpilot.giftexchange.core.Family;
 import com.thepaperpilot.giftexchange.core.Group;
-import com.thepaperpilot.giftexchange.core.Person;
 import com.thepaperpilot.giftexchange.core.Rule;
-import com.thepaperpilot.giftexchange.desktop.ui.FamilyHeader;
-import com.thepaperpilot.giftexchange.desktop.ui.GiftExchange;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -43,7 +40,6 @@ public Box peopleCards() {
 	for(Family family : families) {
 		familyCards.add(((JFamily) family).toCards());
 	}
-	familyCards.add(new FamilyHeader(this).panel);
 	return familyCards;
 }
 
@@ -64,7 +60,6 @@ public void randomize() {
 			for(Family family : families) {
 				familyCards.add(((JFamily) family).toCards());
 			}
-			familyCards.add(new FamilyHeader(JGroup.this).panel);
 			familyCards.updateUI();
 		}
 	}).start();
@@ -76,7 +71,10 @@ public void removeRule(Rule rule) {
 }
 
 public void addFamily(String name) {
-	super.addFamily(name);
+	Family family = new JFamily(this);
+	family.name = name;
+	families.add(family);
+	write();
 	if(familyCards != null) {
 		familyCards.add(((JFamily) families.get(families.size() - 1)).card);
 		familyCards.updateUI();

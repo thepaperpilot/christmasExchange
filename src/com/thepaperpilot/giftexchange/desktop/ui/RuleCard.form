@@ -60,7 +60,7 @@
           <text value="Delete"/>
         </properties>
       </component>
-      <grid id="435f3" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="435f3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -72,37 +72,10 @@
         <children>
           <component id="6bd09" class="javax.swing.JLabel" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="People who match ("/>
-            </properties>
-          </component>
-          <component id="6f821" class="javax.swing.JLabel" default-binding="true">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=") of these:"/>
-            </properties>
-          </component>
-          <component id="a598b" class="javax.swing.JRadioButton" binding="sourceAll">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <opaque value="false"/>
-              <text value="all"/>
-            </properties>
-          </component>
-          <component id="74e30" class="javax.swing.JRadioButton" binding="sourceAny">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <opaque value="false"/>
-              <text value="any"/>
+              <text value="People who match:"/>
             </properties>
           </component>
         </children>
@@ -113,7 +86,7 @@
         </constraints>
         <properties/>
       </component>
-      <grid id="c7d68" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="c7d68" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -123,39 +96,12 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="abc81" class="javax.swing.JLabel" default-binding="true">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=") of these:"/>
-            </properties>
-          </component>
           <component id="4f98a" class="javax.swing.JLabel" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="must match ("/>
-            </properties>
-          </component>
-          <component id="40931" class="javax.swing.JRadioButton" binding="whiteAny">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <opaque value="false"/>
-              <text value="any"/>
-            </properties>
-          </component>
-          <component id="2dfc2" class="javax.swing.JRadioButton" binding="whiteAll">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <focusPainted value="false"/>
-              <opaque value="false"/>
-              <text value="all"/>
+              <text value="Can only be in groups with someone who matches:"/>
             </properties>
           </component>
         </children>
@@ -184,10 +130,10 @@
       </grid>
       <component id="16905" class="javax.swing.JLabel" default-binding="true">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="and none of these:"/>
+          <text value="And can't be in a group with anyone who matches:"/>
         </properties>
       </component>
       <grid id="170dc" binding="blacks" layout-manager="BorderLayout" hgap="0" vgap="0">
