@@ -158,4 +158,12 @@ public void addRule(Rule rule) {
 	rules.add(rule);
 	write();
 }
+
+public String toString() {
+	String string = name + "\n\n";
+	for(Family family : families) {
+		string += family + "\n";
+	}
+	return string;
+}
 }

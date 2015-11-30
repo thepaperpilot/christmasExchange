@@ -38,4 +38,12 @@ public void remove() {
 public void addPerson() {
 	people.add(new Person(this));
 }
+
+public String toString() {
+	String string = name + "\n";
+	for(Person person : people) {
+		string += person + "\n";
+	}
+	return string;
+}
 }

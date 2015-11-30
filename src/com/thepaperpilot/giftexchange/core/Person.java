@@ -63,4 +63,8 @@ void applyRules(ArrayList<Person> people, ArrayList<Rule> rules) {
 public void remove() {
     parent.removePerson(this);
 }
+
+public String toString() {
+	return name + "- Giving to: " + givingTo + "; Receiving from: " + receivingFrom;
+}
 }

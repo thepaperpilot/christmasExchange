@@ -34,6 +34,10 @@ public static void main(String[] args) {
 	Group.groups = read();
 
 	populateTabs();
+
+	for(Group group : Group.groups) {
+		System.out.println(group);
+	}
 }
 
 private static ArrayList<Group> read() {
