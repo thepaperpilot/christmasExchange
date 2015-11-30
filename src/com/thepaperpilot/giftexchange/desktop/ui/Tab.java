@@ -24,12 +24,18 @@ private JButton rename;
 private JButton GENERATEButton;
 private JPanel settings;
 private JButton ruleButton;
+private JScrollPane peoplePane;
+private JScrollPane settingsPane;
+private JScrollPane rulesPane;
 
 public Tab(final JGroup group) {
 	people.add(group.peopleCards());
 	rules.add(group.ruleCards());
 	panel.validate();
 	groupName.setText(group.getName());
+	peoplePane.getVerticalScrollBar().setUnitIncrement(16);
+	settingsPane.getVerticalScrollBar().setUnitIncrement(16);
+	rulesPane.getVerticalScrollBar().setUnitIncrement(16);
 	peopleButton.setSelected(true);
 	peopleButton.addActionListener(new ActionListener() {
 		@Override

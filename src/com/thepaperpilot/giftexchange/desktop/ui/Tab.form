@@ -50,7 +50,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <scrollpane id="9b629">
+          <scrollpane id="9b629" binding="peoplePane">
             <constraints>
               <card name="people"/>
             </constraints>
@@ -70,7 +70,7 @@
               </grid>
             </children>
           </scrollpane>
-          <scrollpane id="243f9">
+          <scrollpane id="243f9" binding="settingsPane">
             <constraints>
               <card name="settings"/>
             </constraints>
@@ -146,7 +146,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <scrollpane id="3ca59">
+              <scrollpane id="3ca59" binding="rulesPane">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
